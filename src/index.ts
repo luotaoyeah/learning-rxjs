@@ -1,1 +1,1 @@
-import "./doc/01-overview/01-01-introduction/01-01.ts";
+import "./doc/01-overview/01-02-first-example/01-02.ts";

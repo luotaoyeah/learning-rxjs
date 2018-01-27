@@ -4,7 +4,8 @@
   "description": "learning-rxjs",
   "author": "luotao",
   "scripts": {
-    "dev": "rimraf ./dist && webpack && node ./dist/index.js"
+    "dev": "rimraf ./dist && webpack && node ./dist/index.js",
+    "build": "rimraf ./dist && webpack"
   },
   "dependencies": {
     "rxjs": "^6.4.0"
