@@ -41,7 +41,7 @@ console.log("\n-------------------------------------------------- 02");
         scan<MouseEvent, number>((count: number) => count + 1, 0)
       )
       .subscribe((count: number) => {
-        console.log(`%cBTN01 CLICKED ${++count} TIMES`, "color:#00ff00");
+        console.log(`%cBTN02 CLICKED ${++count} TIMES`, "color:#00ff00");
       });
   }
 }
