@@ -5,9 +5,12 @@
   "author": "luotao",
   "scripts": {
     "dev": "rimraf ./dist && webpack && node ./dist/index.js",
-    "build": "rimraf ./dist && webpack"
+    "dev:node": "rimraf ./dist && webpack --target node && node ./dist/index.js",
+    "build": "rimraf ./dist && webpack --mode production",
+    "build:node": "rimraf ./dist && webpack --target node --mode production"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "rxjs": "^6.4.0"
   },
   "devDependencies": {

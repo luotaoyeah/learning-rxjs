@@ -19,7 +19,6 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js", ".json"]
     },
-    target: "web",
     mode: "development",
     devtool: "eval-source-map"
   }
