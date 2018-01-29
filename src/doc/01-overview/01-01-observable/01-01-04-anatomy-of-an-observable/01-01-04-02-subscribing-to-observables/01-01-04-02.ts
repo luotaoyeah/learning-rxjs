@@ -24,7 +24,7 @@ console.log(
    *
    * 使用 constructor 创建 observable 对象时，传入了一个 subscribe 函数作为参数，
    * 当我们调用 subscribe() 方法订阅时，实际上就会调用这个 subscribe 参数函数，
-   * 因此，当多次订阅时，它们之间时相互独立的
+   * 因此，当多次订阅时，它们之间是相互独立的
    */
   observable.subscribe({
     next(value: number) {
