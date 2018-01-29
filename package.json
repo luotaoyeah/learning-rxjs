@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "rimraf ./dist && webpack && node ./dist/index.js",
     "dev:node": "rimraf ./dist && webpack --target node && node ./dist/index.js",
+    "dev:node:debug": "rimraf ./dist && webpack --target node && node %NODE_OPTIONS% ./dist/index.js",
     "build": "rimraf ./dist && webpack --mode production",
     "build:node": "rimraf ./dist && webpack --target node --mode production"
   },

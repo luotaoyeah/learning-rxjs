@@ -28,7 +28,7 @@ console.log(
 
   /*
    * 将 subject 作为 Observable.subscribe() 方法的参数，
-   * 这样就将一个 unicast 的 observable 转换成了一个 multicast 的 subject
+   * 这样就将一个 unicast 的 observable 转换成了一个 multicast 的 observable
    */
   observable.subscribe(subject);
 }
