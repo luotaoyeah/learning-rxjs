@@ -1,8 +1,7 @@
 /*
  * Overview
  *     Subject
- *         Multicasted Observables
- *             ReplaySubject
+ *         ReplaySubject
  */
 
 import chalk from "chalk";
