@@ -1,1 +1,1 @@
-import "./doc/02-api/filter/01.ts";
+import "./doc/02-api/catchError/01.ts";
