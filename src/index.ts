@@ -1,1 +1,1 @@
-import "./doc/02-api/take/01.ts";
+import "./doc/02-api/takeUntil/01.ts";
