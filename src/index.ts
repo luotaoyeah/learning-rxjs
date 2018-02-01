@@ -1,1 +1,1 @@
-import "./doc/02-api/delay/02.ts";
+import "./doc/02-api/tap/01.ts";
