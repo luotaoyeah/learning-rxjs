@@ -14,7 +14,8 @@ console.log(
    */
 
   /*
-   * 下面三个函数实现相同的功能，但是具体的实现方式不一样
+   * 下面三个函数实现相同的功能，但是具体的实现方式不一样，
+   * 越往下，声明式的特点越明显
    */
 
   function double01(arr: Array<number>): Array<number> {
