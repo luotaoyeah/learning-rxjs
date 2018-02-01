@@ -9,7 +9,7 @@ import { ConnectableObservable, from, Observable, Subject } from "rxjs";
 import { multicast } from "rxjs/operators";
 
 console.log(
-  chalk.red("\n-------------------------------------------------- 01")
+  chalk.red("\n-------------------------------------------------- 01"),
 );
 {
   /*
@@ -28,7 +28,7 @@ console.log(
   >(multicast(subject)) as ConnectableObservable<number>;
 
   /*
-   * 调用 ConnectableObservable.subscribe() 方法，实际上底层调用的时 Subject.subscribe() 方法，
+   * 调用 ConnectableObservable.subscribe() 方法，实际上底层调用的是 Subject.subscribe() 方法，
    * 因此，只是将这个 observer 添加到对应的 observer list 中去
    */
   connectableObservable.subscribe((value: number) => {

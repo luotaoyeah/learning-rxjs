@@ -11,17 +11,17 @@ import {
   interval,
   Observable,
   Subject,
-  Subscription
+  Subscription,
 } from "rxjs";
 import { multicast } from "rxjs/operators";
 
 console.log(
-  chalk.red("\n-------------------------------------------------- 01")
+  chalk.red("\n-------------------------------------------------- 01"),
 );
 {
   /*
    * 默认情况下，
-   *     需要我们手动调用 ConnectableObservable.connect() 方法之后，observable execution 才会开始启动，
+   *     需要我们手动调用 ConnectableObservable.connect() 方法来启动 observable execution，
    *     并且需要手动调用 Subscription.unsubscribe() 方法来终止 observable execution
    */
 
@@ -35,7 +35,7 @@ console.log(
   const subscription01: Subscription = connectableObservable.subscribe(
     (value: number) => {
       console.log(chalk.red(value.toString()));
-    }
+    },
   );
 
   /*
