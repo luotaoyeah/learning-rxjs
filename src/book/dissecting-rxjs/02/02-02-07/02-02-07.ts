@@ -34,6 +34,9 @@ console.log(
       console.log(chalk.redBright(e.message));
     },
     complete() {
+      /*
+       * 此处的 complete() 方法不会执行
+       */
       console.log(chalk.white("DONE"));
     },
   });
