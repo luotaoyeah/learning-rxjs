@@ -1,6 +1,9 @@
 import chalk from "chalk";
 import { Observable, of } from "rxjs";
 
+/*
+ * 2.2.1 观察者模式（observer pattern）
+ */
 console.log(
   chalk.red("\n-------------------------------------------------- 01"),
 );
@@ -16,9 +19,11 @@ console.log(
    *     观察者模式（Observer Pattern）
    *     迭代器模式（Iterator Pattern）
    *
-   * 观察者模式，包含两个对象，一个 publisher，一个 observer，
-   * Observable 对象就是其中的 publisher，它负责产生事件，推送数据，
-   * Observer 对象就是其中的 observer，它负责订阅事件，处理数据
+   * 观察者模式，包含两个对象：
+   *     publisher
+   *         Observable 对象就是其中的 publisher，它负责产生事件，推送数据
+   *     observer
+   *         Observer 对象就是其中的 observer，它负责订阅事件，处理数据
    */
 }
 
