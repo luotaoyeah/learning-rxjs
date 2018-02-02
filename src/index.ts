@@ -1,1 +1,1 @@
-import "./book/dissecting-rxjs/02/02-02-05/02-02-05.ts";
+import "./book/dissecting-rxjs/02/02-02-06/02-02-06.ts";
