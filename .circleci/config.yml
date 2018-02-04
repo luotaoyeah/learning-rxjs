@@ -17,6 +17,12 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          name: unit test
+          command: npm run test
+      - run:
+          name: codecov
+          command: npm run codecov
 
 workflows:
   version: 2
