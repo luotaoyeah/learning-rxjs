@@ -11,7 +11,7 @@
     "build:node": "rimraf ./dist && webpack --target node --mode production",
     "lint:ts": "tslint src/**/*.ts",
     "test": "jest --coverage",
-    "codecov": "codecov --token=3027f72c-d961-45d6-b157-c68adc1960b8"
+    "codecov": "codecov --token=fd34330d-bb19-4b11-aab0-0e4e39d88b08"
   },
   "dependencies": {
     "chalk": "^2.4.2",
