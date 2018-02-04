@@ -1,12 +1,14 @@
 let startTime: number | null = null;
 
+// tslint:disable-next-line:only-arrow-functions
 $("#hold-me").mousedown(function() {
   startTime = Date.now();
 });
 
+// tslint:disable-next-line:only-arrow-functions
 $("#hold-me").mouseup(function() {
   if (startTime) {
-    let elapsedMilliseconds = Date.now() - startTime;
+    const elapsedMilliseconds = Date.now() - startTime;
     startTime = null;
     $("#hold-time").text(elapsedMilliseconds);
     $.ajax(

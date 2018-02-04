@@ -9,7 +9,7 @@ import chalk from "chalk";
 import { Observable, Subscriber } from "rxjs";
 
 console.log(
-  chalk.red("\n-------------------------------------------------- 01")
+  chalk.red("\n-------------------------------------------------- 01"),
 );
 {
   const observable = new Observable((subscriber: Subscriber<number>) => {
@@ -29,12 +29,6 @@ console.log(
   observable.subscribe({
     next(value: number) {
       console.log(chalk.red(value.toString()));
-    }
+    },
   });
-}
-
-console.log(
-  chalk.yellow("\n-------------------------------------------------- 02")
-);
-{
 }

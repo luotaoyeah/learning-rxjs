@@ -5,12 +5,12 @@
  *             Creating Observables
  */
 
-import { interval, Observable, Subscriber } from "rxjs";
 import chalk from "chalk";
+import { interval, Observable, Subscriber } from "rxjs";
 import { take } from "rxjs/operators";
 
 console.log(
-  chalk.red("\n-------------------------------------------------- 01")
+  chalk.red("\n-------------------------------------------------- 01"),
 );
 {
   /*
@@ -30,7 +30,7 @@ console.log(
 }
 
 console.log(
-  chalk.yellow("\n-------------------------------------------------- 02")
+  chalk.yellow("\n-------------------------------------------------- 02"),
 );
 {
   /*

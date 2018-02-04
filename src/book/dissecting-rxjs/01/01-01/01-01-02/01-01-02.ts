@@ -1,6 +1,6 @@
 import { fromEvent, Timestamp } from "rxjs";
-import { flatMap, map, timestamp, withLatestFrom } from "rxjs/operators";
 import { ajax, AjaxResponse } from "rxjs/ajax";
+import { flatMap, map, timestamp, withLatestFrom } from "rxjs/operators";
 
 const buttonEl: HTMLButtonElement | null = document.querySelector<
   HTMLButtonElement
@@ -32,6 +32,7 @@ if (buttonEl) {
       ),
       map((ajaxResponse: AjaxResponse) => ajaxResponse.response),
     )
+    // tslint:disable-next-line:no-any
     .subscribe((res: any) => {
       document.querySelector("#rank")!.innerHTML = `你超过了 ${
         res.rank

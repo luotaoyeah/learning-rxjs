@@ -3,8 +3,8 @@
  *     Observable
  */
 
-import { Observable, Subscriber } from "rxjs";
 import chalk from "chalk";
+import { Observable, Subscriber } from "rxjs";
 
 console.log("\n-------------------------------------------------- 01");
 {
@@ -39,7 +39,7 @@ console.log("\n-------------------------------------------------- 01");
     },
     complete() {
       console.log(`${new Date().toLocaleTimeString()} COMPLETE`);
-    }
+    },
   });
 
   /*
@@ -48,12 +48,12 @@ console.log("\n-------------------------------------------------- 01");
   observable.subscribe({
     next(value: number) {
       console.log(
-        chalk.blue(`${new Date().toLocaleTimeString()} NEXT ${value}`)
+        chalk.blue(`${new Date().toLocaleTimeString()} NEXT ${value}`),
       );
     },
     complete() {
       console.log(chalk.blue(`${new Date().toLocaleTimeString()} COMPLETE`));
-    }
+    },
   });
 
   /*
@@ -63,12 +63,12 @@ console.log("\n-------------------------------------------------- 01");
     observable.subscribe({
       next(value: number) {
         console.log(
-          chalk.red(`${new Date().toLocaleTimeString()} NEXT ${value}`)
+          chalk.red(`${new Date().toLocaleTimeString()} NEXT ${value}`),
         );
       },
       complete() {
         console.log(chalk.red(`${new Date().toLocaleTimeString()} COMPLETE`));
-      }
+      },
     });
   }, 2000);
 }

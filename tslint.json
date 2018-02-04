@@ -1,3 +1,11 @@
 {
-  "extends": ["tslint:latest", "tslint-config-prettier"]
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    "no-any": true,
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
+    "no-submodule-imports": false,
+    "array-type": {
+      "options": "generic"
+    }
+  }
 }

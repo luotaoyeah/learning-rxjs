@@ -1,10 +1,11 @@
-import { TestScheduler } from "rxjs/testing";
 import { throttleTime } from "rxjs/operators";
+import { TestScheduler } from "rxjs/testing";
 
 /*
  * TODO
  */
 describe("02-02-06", () => {
+  // tslint:disable-next-line:no-empty
   const scheduler = new TestScheduler((actual, expected) => {});
 
   it("marble testing should work", () => {
