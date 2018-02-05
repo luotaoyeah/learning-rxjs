@@ -17,6 +17,20 @@ jobs:
       - run:
           name: build
           command: npm run build
+
+  test-learning-rxjs:
+    working_directory: ~/learning-rxjs
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: learning-rxjs-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: learning-rxjs-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
       - run:
           name: unit test
           command: npm run test
@@ -29,3 +43,6 @@ workflows:
   learning-rxjs-workflow:
     jobs:
       - build-learning-rxjs
+      - test-learning-rxjs:
+          requires:
+            - build-learning-rxjs
