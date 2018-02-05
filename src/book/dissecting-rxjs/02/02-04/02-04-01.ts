@@ -1,9 +1,10 @@
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
-
 /*
  * 2.4 Hot Observable 和 Cold Observable
  */
+
+import chalk from "chalk";
+import { Observable, Subscriber } from "rxjs";
+
 console.log(
   chalk.red("\n-------------------------------------------------- 01"),
 );

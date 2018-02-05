@@ -1,13 +1,14 @@
+/*
+ * 2.5 操作符简介
+ */
+
 import chalk from "chalk";
 import { Observable, Subscriber } from "rxjs";
 import { map } from "rxjs/operators";
 
-/*
- * 2.5 操作符简介
- */
 function fn01() {
   console.log(
-    chalk.red("\n-------------------------------------------------- 02"),
+    chalk.red("\n-------------------------------------------------- 01"),
   );
   {
     /*
