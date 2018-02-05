@@ -4,6 +4,7 @@
     "no-any": true,
     "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "no-submodule-imports": false,
+    "ordered-imports": false,
     "array-type": {
       "options": "generic"
     }

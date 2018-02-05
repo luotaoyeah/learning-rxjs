@@ -4,7 +4,7 @@ jobs:
   build-learning-rxjs:
     working_directory: ~/learning-rxjs
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12-browsers
     steps:
       - checkout
       - restore_cache:
@@ -21,7 +21,7 @@ jobs:
   test-learning-rxjs:
     working_directory: ~/learning-rxjs
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12-browsers
     steps:
       - checkout
       - restore_cache:

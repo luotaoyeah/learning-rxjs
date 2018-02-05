@@ -1,16 +1,14 @@
-import { throttleTime } from "rxjs/operators";
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
+import { throttleTime } from "rxjs/operators";
 
-/*
- * TODO
- */
-describe("02-02-06", () => {
-  // tslint:disable-next-line:no-empty
-  const scheduler = new TestScheduler((actual, expected) => {});
+describe("06-01", () => {
+  const scheduler = new TestScheduler(() => {
+    /*  */
+  });
 
-  it("marble testing should work", () => {
+  it("should work", () => {
     scheduler.run((helpers: RunHelpers) => {
       const { cold, expectObservable, expectSubscriptions } = helpers;
 
