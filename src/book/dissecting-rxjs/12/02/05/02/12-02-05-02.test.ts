@@ -1,4 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
+import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
+import { EMPTY } from "rxjs";
 
 describe("12-02-05-02", () => {
   let scheduler: TestScheduler;
@@ -29,6 +31,16 @@ describe("12-02-05-02", () => {
       expect(time).toEqual(50);
       // @ts-ignore
       TestScheduler.frameTimeFactor = 1;
+    });
+  });
+
+  /*
+   * | 表示 Subscriber.complete(),
+   * 如果只有一个 |, 表示 EMPTY
+   */
+  it("should work with |", () => {
+    scheduler.run(({ expectObservable }: RunHelpers) => {
+      expectObservable(EMPTY).toBe("|");
     });
   });
 });
