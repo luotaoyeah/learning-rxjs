@@ -100,4 +100,26 @@ describe("12-02-05-02", () => {
       expect(time).toEqual(11);
     });
   });
+
+  /*
+   * marble string 中的 ^ 表示被订阅的时刻, 只对于 hot observable 有效,
+   * 因为对于 cold observable 来说, 它被订阅的时刻就是它开始的时刻
+   */
+  it("should work with ^", () => {
+    scheduler.run(({ hot, cold }: RunHelpers) => {
+      expect(() => {
+        hot("-a-^-b-|");
+      }).not.toThrow();
+
+      /*
+       * 如果 marble stirng 中包含了 ^, 则用它创建一个 cold observable 时会报错
+       */
+      expect(() => {
+        cold("-a-^-b-|");
+      }).toThrow();
+
+      const time: number = scheduler.createTime("-a-^-b-|");
+      expect(time).toEqual(7);
+    });
+  });
 });
