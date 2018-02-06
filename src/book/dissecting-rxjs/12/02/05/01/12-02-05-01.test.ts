@@ -7,6 +7,11 @@ describe("12-02-05-01", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
+    /*
+     * TestScheduler 构造函数参数为比较方法,
+     * 可以让我们自定义如何对实际数据和期望数据进行比较,
+     * 通常, 我们可以使用测试框架提供的方法, 比如下面的 toEqual() 方法
+     */
     // tslint:disable-next-line:no-any
     scheduler = new TestScheduler((actual: any, expected: any) => {
       expect(actual).toEqual(expected);
@@ -28,6 +33,10 @@ describe("12-02-05-01", () => {
     scheduler.run((helpers: RunHelpers) => {
       const { cold, expectObservable } = helpers;
 
+      /*
+       * 使用 cold() 方法创建一个 observable 对象时,
+       * 可以通过第二个参数, 指定各个数据的实际值
+       */
       const source$: ColdObservable<number> = cold("--a--b--|", {
         a: 1,
         b: 2,
