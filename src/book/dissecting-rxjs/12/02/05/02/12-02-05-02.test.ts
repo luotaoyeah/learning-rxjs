@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
-import { EMPTY, throwError } from "rxjs";
+import { EMPTY, NEVER, throwError } from "rxjs";
 
 describe("12-02-05-02", () => {
   let scheduler: TestScheduler;
@@ -53,6 +53,16 @@ describe("12-02-05-02", () => {
   it("should work with #", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
       expectObservable(throwError("error")).toBe("#");
+    });
+  });
+
+  /*
+   * 如果 marble string 中既不包含 |, 也不包含 #, 则表示 NEVER,
+   * 即该 observable 永不结束
+   */
+  it("should work with never()", () => {
+    scheduler.run(({ expectObservable }: RunHelpers) => {
+      expectObservable(NEVER).toBe("-");
     });
   });
 });
