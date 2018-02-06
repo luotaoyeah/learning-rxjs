@@ -88,4 +88,16 @@ describe("12-02-05-02", () => {
       });
     });
   });
+
+  /*
+   * marble string 中的 () 表示它里边的数据(包括 | 和 #)是同时发生的,
+   * () 这两个字符也分别会占用一个时间帧
+   */
+  it("should work with ()", () => {
+    scheduler.run(() => {
+      const time: number = scheduler.createTime("-(ac)-(bc)-|");
+
+      expect(time).toEqual(11);
+    });
+  });
 });
