@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
-import { EMPTY } from "rxjs";
+import { EMPTY, throwError } from "rxjs";
 
 describe("12-02-05-02", () => {
   let scheduler: TestScheduler;
@@ -36,11 +36,23 @@ describe("12-02-05-02", () => {
 
   /*
    * | 表示 Subscriber.complete(),
-   * 如果只有一个 |, 表示 EMPTY
+   * 如果只有一个 |, 表示 EMPTY,
+   * 即该 observable 不推送数据, 直接调用 complete() 接收
    */
   it("should work with |", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
       expectObservable(EMPTY).toBe("|");
+    });
+  });
+
+  /*
+   * # 表示 Subscriber.error(),
+   * 如果只有一个 #, 表示 throwError(),
+   * 即该 observable 不推送数据, 直接抛出一个错误
+   */
+  it("should work with #", () => {
+    scheduler.run(({ expectObservable }: RunHelpers) => {
+      expectObservable(throwError("error")).toBe("#");
     });
   });
 });
