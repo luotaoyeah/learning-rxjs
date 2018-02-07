@@ -1,5 +1,7 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
+import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
+import { HotObservable } from "rxjs/internal/testing/HotObservable";
 
 describe("12-02-05-02", () => {
   let scheduler: TestScheduler;
@@ -18,6 +20,7 @@ describe("12-02-05-02", () => {
    * 在 subscription marble string 中, 只有三种字符: -, ^, !
    * 分别表示: 时间的帧, 订阅时刻, 取消订阅时刻
    */
+
   it("should work with hot()", () => {
     scheduler.run(({ hot, expectObservable }: RunHelpers) => {
       /*
@@ -39,6 +42,18 @@ describe("12-02-05-02", () => {
       const subscriptionMarbleString: string = "---^---!-"; // [3, 7)
 
       expectObservable(observable02, subscriptionMarbleString).toBe("----a-a-"); // 4, 6
+    });
+  });
+
+  it("should work for expectSubscriptions()", () => {
+    scheduler.run(({ cold, hot, expectSubscriptions }: RunHelpers) => {
+      const observable01: ColdObservable<void> = cold("----|");
+      observable01.subscribe();
+      expectSubscriptions(observable01.subscriptions).toBe("^---!");
+
+      const observable02: HotObservable<void> = hot("----|");
+      observable02.subscribe();
+      expectSubscriptions(observable02.subscriptions).toBe("^---!");
     });
   });
 });
