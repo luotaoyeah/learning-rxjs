@@ -21,45 +21,31 @@ console.log(
    */
 }
 
-function fn02() {
+function fn02(): Observable<number> {
   console.log(
     chalk.yellow("\n-------------------------------------------------- 02"),
   );
-  {
-    /*
-     * hot observable 的特点是, 对于所有的 observer, 始终只存在一个生产者(producer),
-     * cold observable 的特点是, 每订阅一个 observer, 就会创建一个新的 producer,
-     * 我们使用 new Observable() 创建的 observable 都是 cold observable
-     */
+  /*
+   * hot observable 的特点是, 对于所有的 observer, 始终只存在一个生产者(producer),
+   * cold observable 的特点是, 每订阅一个 observer, 就会创建一个新的 producer,
+   * 我们使用 new Observable() 创建的 observable 都是 cold observable
+   */
 
-    const observable: Observable<number> = new Observable<number>(
-      (subscriber: Subscriber<number>) => {
-        let i = 0;
+  return new Observable<number>((subscriber: Subscriber<number>) => {
+    let i = 0;
 
-        const timer = setInterval(() => {
-          subscriber.next(++i);
-        }, 1000);
+    const timer = setInterval(() => {
+      subscriber.next(++i);
+    }, 1000);
 
-        return {
-          unsubscribe(): void {
-            if (timer) {
-              clearInterval(timer);
-            }
-          },
-        };
+    return {
+      unsubscribe(): void {
+        if (timer) {
+          clearInterval(timer);
+        }
       },
-    );
-
-    observable.subscribe((value: number) => {
-      console.log(chalk.red(value.toString()));
-    });
-
-    setTimeout(() => {
-      observable.subscribe((value: number) => {
-        console.log(chalk.yellow(value.toString()));
-      });
-    }, 5000);
-  }
+    };
+  });
 }
 
 export { fn02 };
