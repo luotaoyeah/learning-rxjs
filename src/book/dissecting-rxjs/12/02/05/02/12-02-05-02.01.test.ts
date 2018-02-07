@@ -122,4 +122,14 @@ describe("12-02-05-02", () => {
       expect(time).toEqual(7);
     });
   });
+
+  /*
+   * marble string 中的空白字符会被忽略,
+   * 空白字符可以用来对多个 marble string 进行对齐
+   */
+  it("should work with whitespace", () => {
+    scheduler.run(({ cold, expectObservable }: RunHelpers) => {
+      expectObservable(cold("   -a-b-|")).toBe("-a-b-|   ");
+    });
+  });
 });

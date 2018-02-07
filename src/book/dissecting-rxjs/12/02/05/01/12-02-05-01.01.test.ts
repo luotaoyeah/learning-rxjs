@@ -34,7 +34,7 @@ describe("12-02-05-01", () => {
       const { cold, expectObservable } = helpers;
 
       /*
-       * 使用 cold() 方法创建一个 observable 对象时,
+       * 使用 cold()/hot() 方法创建一个 observable 对象时,
        * 可以通过第二个参数, 指定各个数据的实际值
        */
       const source$: ColdObservable<number> = cold("--a--b--|", {
