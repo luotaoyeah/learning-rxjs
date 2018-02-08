@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 
 jest.useFakeTimers();
 
-describe("src/book/dissecting-rxjs/02/02-04/02-04-01.ts", () => {
+describe("src/book/dissecting-rxjs/02/04/02-04-01.ts", () => {
   /*
    * 使用 Observable 构造函数创建的 observable 都是 cold observable,
    * 因此, 每次订阅都会从头开始推送数据

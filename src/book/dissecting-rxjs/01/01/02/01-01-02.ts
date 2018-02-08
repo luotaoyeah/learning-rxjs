@@ -16,7 +16,7 @@ if (buttonEl) {
     map<[Timestamp<MouseEvent>, Timestamp<MouseEvent>], number>(
       ([timestampUp, timestampDown]: [
         Timestamp<MouseEvent>,
-        Timestamp<MouseEvent>
+        Timestamp<MouseEvent>,
       ]) => timestampUp.timestamp - timestampDown.timestamp,
     ),
   );
@@ -34,9 +34,9 @@ if (buttonEl) {
     )
     // tslint:disable-next-line:no-any
     .subscribe((res: any) => {
-      document.querySelector("#rank")!.innerHTML = `你超过了 ${
-        res.rank
-      }% 的用户`;
+      document.querySelector(
+        "#rank",
+      )!.innerHTML = `你超过了 ${res.rank}% 的用户`;
     });
 }
 
