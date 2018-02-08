@@ -3,7 +3,7 @@ import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
 import { throttleTime } from "rxjs/operators";
 
-describe("06-01", () => {
+describe("src/doc/01-OVERVIEW/06-testing/01-testing-rxjs-code-with-marble-diagrams/06-01.ts", () => {
   const scheduler = new TestScheduler(() => {
     /*  */
   });

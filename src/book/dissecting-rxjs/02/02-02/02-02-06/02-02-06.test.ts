@@ -6,7 +6,7 @@ import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
 /*
  * TODO
  */
-describe("02-02-06", () => {
+describe("src/book/dissecting-rxjs/02/02-02/02-02-06/02-02-06.ts", () => {
   // tslint:disable-next-line:no-empty
   const scheduler = new TestScheduler((actual, expected) => {});
 

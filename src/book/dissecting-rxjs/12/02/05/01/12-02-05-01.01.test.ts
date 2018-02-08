@@ -3,7 +3,7 @@ import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
 import { map } from "rxjs/operators";
 
-describe("12-02-05-01", () => {
+describe("src/book/dissecting-rxjs/12/02/05/01/12-02-05-01.01.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {

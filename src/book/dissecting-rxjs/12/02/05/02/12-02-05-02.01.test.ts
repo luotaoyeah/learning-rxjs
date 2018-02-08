@@ -3,7 +3,7 @@ import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { EMPTY, interval, NEVER, Observable, throwError } from "rxjs";
 import { take } from "rxjs/operators";
 
-describe("12-02-05-02", () => {
+describe("src/book/dissecting-rxjs/12/02/05/02/12-02-05-02.01.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {

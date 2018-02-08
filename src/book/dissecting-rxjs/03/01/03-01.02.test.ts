@@ -2,7 +2,7 @@ import { Observable } from "rxjs";
 import { fn01 } from "./03-01.02";
 import { filter, map } from "rxjs/operators";
 
-describe("03-01", () => {
+describe("src/book/dissecting-rxjs/03/01/03-01.02.ts", () => {
   it("should work for filter & map", () => {
     const observable01$: Observable<number> = fn01();
 
