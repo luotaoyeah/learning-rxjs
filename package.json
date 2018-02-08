@@ -31,8 +31,8 @@
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-loader": "^3.5.4",
-    "typescript": "^3.5.2",
-    "webpack": "^4.35.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   }
 }
