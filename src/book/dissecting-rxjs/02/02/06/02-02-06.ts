@@ -8,7 +8,7 @@ console.log(
   chalk.red("\n-------------------------------------------------- 01"),
 );
 /*
- * 当 observable 数据推送完毕时，需要告诉所有的 observer 这个消息，
+ * 当 observable 数据推送完毕时, 需要告诉所有的 observer 这个消息,
  * 使用的是 Subscriber.complete() 方法
  */
 
@@ -26,7 +26,7 @@ const source$ = new Observable((subscriber: Subscriber<number>) => {
 });
 
 /*
- * 当 observer 接收到 complete 通知时，就会执行 complete 方法
+ * 当 observer 接收到 complete 通知时, 就会执行 complete 方法
  */
 source$.subscribe({
   next(value: number) {
