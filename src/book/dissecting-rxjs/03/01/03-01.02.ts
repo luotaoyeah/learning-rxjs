@@ -6,8 +6,7 @@ import { Observable, Subscriber } from "rxjs";
 
 function fn01(): Observable<number> {
   /*
-   * 跟数组中的 filter() 和 map() 类似,
-   * rxjs 提供了类似的 filter 和 map 操作符
+   * 跟数组中的 filter() 和 map() 类似, rxjs 提供了类似的 filter 和 map 操作符
    */
 
   return new Observable((subscriber: Subscriber<number>) => {
