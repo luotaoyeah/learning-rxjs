@@ -14,7 +14,7 @@ describe("src/book/dissecting-rxjs/04/02/03/04-02-03.ts", () => {
   /*
    * range 操作符用来从一个数字范围创建出一个 observable 对象,
    * 第一个参数表示从哪个数字开始, 第二个参数表示要产生多少个数字,
-   * 产生的数字一次递增 1
+   * 产生的数字依次递增 1
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
