@@ -13,6 +13,8 @@ describe("src/book/dissecting-rxjs/04/02/06/04-02-06.01.ts", () => {
 
   /**
    * empty 操作符用来产生一个直接 complete 的数据流, 不会推送任何数据
+   *
+   * 类似于 Promise.resolve() 方法
    * @deprecated
    */
   it("should work", () => {
