@@ -1,7 +1,7 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { Observable, of, Subscriber } from "rxjs";
-import { delay, repeat } from "rxjs/operators";
+import { delay, repeat, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/04/02/05/04-02-05.ts", () => {
   let scheduler: TestScheduler;
@@ -37,6 +37,15 @@ describe("src/book/dissecting-rxjs/04/02/05/04-02-05.ts", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
       const source01$ = of(1, 2).pipe(repeat(0));
       expectObservable(source01$).toBe("|");
+
+      const source02$ = of(1, 2).pipe(repeat());
+      expectObservable(source02$.pipe(take(5))).toBe("(abcde|)", {
+        a: 1,
+        b: 2,
+        c: 1,
+        d: 2,
+        e: 1,
+      });
     });
   });
 
