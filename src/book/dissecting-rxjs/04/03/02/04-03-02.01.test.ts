@@ -42,4 +42,29 @@ describe("src/book/dissecting-rxjs/04/03/02/04-03-02.01.ts", () => {
       });
     });
   });
+
+  /*
+   * from() 可以转化 iterable 对象, 包括 generator 函数
+   */
+  it("should work with iterable", () => {
+    function* gen01(max: number) {
+      for (let i = 1; i <= max; i++) {
+        yield i;
+      }
+    }
+
+    scheduler.run(({ expectObservable }) => {
+      expectObservable(from([1, 2, 3][Symbol.iterator]())).toBe("(abc|)", {
+        a: 1,
+        b: 2,
+        c: 3,
+      });
+
+      expectObservable(from(gen01(3))).toBe("(abc|)", {
+        a: 1,
+        b: 2,
+        c: 3,
+      });
+    });
+  });
 });
