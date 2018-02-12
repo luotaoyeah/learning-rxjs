@@ -1,7 +1,7 @@
 import { TestScheduler } from "rxjs/testing";
 import { from } from "rxjs";
 
-describe("src/book/dissecting-rxjs/04/03/02/04-03-02.01.ts", () => {
+describe("src/book/dissecting-rxjs/04/03/02/04-03-02.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -69,7 +69,7 @@ describe("src/book/dissecting-rxjs/04/03/02/04-03-02.01.ts", () => {
   });
 
   /*
-   * from() 可以将字符串当成一个字符数据, 转化为 observable 数据流
+   * from() 可以将字符串当成一个字符数组, 转化为 observable 数据流
    */
   it("should work with string", () => {
     scheduler.run(({ expectObservable }) => {
