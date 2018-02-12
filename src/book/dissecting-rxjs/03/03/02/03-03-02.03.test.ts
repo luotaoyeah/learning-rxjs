@@ -9,4 +9,8 @@ describe("src/book/dissecting-rxjs/03/03/02/03-03-02.03.ts", () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  it("should work", () => {
+    expect(0).toBe(0);
+  });
 });

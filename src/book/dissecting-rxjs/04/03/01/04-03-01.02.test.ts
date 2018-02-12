@@ -26,7 +26,7 @@ describe("src/book/dissecting-rxjs/04/03/01/04-03-01.02.ts", () => {
 
   /*
    * 第二个参数 m 表示, 在第一个数据产生之后, 开始每隔 m 毫秒持续产生递增 1 的数据, 类似于 interval 操作符,
-   * 如果第一个和第二个参数一样, 则此时的 timer 跟 interval 功能一样
+   * 如果第一个参数和第二个参数一样, 则此时的 timer 跟 interval 功能一样
    */
   it("should work 02", () => {
     scheduler.run(({ expectObservable }) => {
