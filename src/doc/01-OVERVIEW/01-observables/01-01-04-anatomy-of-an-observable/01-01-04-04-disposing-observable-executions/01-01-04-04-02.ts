@@ -21,7 +21,7 @@ console.log(
    */
 
   const observable = new Observable((subscriber: Subscriber<number>) => {
-    const timer: number = setInterval(() => {
+    const timer: NodeJS.Timeout = setInterval(() => {
       subscriber.next(9);
     }, 1000);
 
