@@ -1,5 +1,5 @@
 import { TestScheduler } from "rxjs/testing";
-import { merge, timer } from "rxjs";
+import { merge, timer, concat, of } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/05/01/02/05-01-02.01.ts", () => {
@@ -36,6 +36,30 @@ describe("src/book/dissecting-rxjs/05/01/02/05-01-02.01.ts", () => {
           d: "1B",
         },
       );
+
+      expectObservable(concat(source01$, source02$)).toBe(
+        "a 999ms b 499ms c 999ms (d|)",
+        {
+          a: "0A",
+          b: "1A",
+          c: "0B",
+          d: "1B",
+        },
+      );
+    });
+  });
+
+  /*
+   * 如果上游的 observable 都是同步数据, 则使用 merge() 没有太多意义
+   */
+  it("should work with sync observable", () => {
+    scheduler.run(({ expectObservable }) => {
+      expectObservable(merge(of(1, 2), of(3, 4))).toBe("(abcd|)", {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4,
+      });
     });
   });
 });
