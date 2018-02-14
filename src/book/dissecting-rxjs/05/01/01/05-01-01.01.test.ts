@@ -19,7 +19,9 @@ describe("src/book/dissecting-rxjs/05/01/01/05-01-01.01.ts", () => {
   });
 
   /*
-   * concat() 操作符类似于数组的 concat() 方法, 用来将多个 observable 的数据依次连接起来组成一个新的 observable 对象
+   * concat() 操作符类似于数组的 concat() 方法, 用来将多个 observable 的数据依次连接起来组成一个新的 observable 对象,
+   * 实例的 concat() 操作符已经被废弃了, 推荐使用静态的 concat() 操作符,
+   * concat() 的工作原理是, 上一个 observable 在 complete 之后, 就会去订阅下一个 observable 对象
    */
   it("should work with concat()", () => {
     scheduler.run(({ expectObservable }) => {
