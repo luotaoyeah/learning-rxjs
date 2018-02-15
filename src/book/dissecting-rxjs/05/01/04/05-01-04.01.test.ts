@@ -1,5 +1,5 @@
 import { TestScheduler } from "rxjs/testing";
-import { combineLatest, interval, timer } from "rxjs";
+import { combineLatest, interval, of, timer } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/05/01/04/05-01-04.01.ts", () => {
@@ -33,6 +33,25 @@ describe("src/book/dissecting-rxjs/05/01/04/05-01-04.01.ts", () => {
         b: ["0A", "1B"],
         c: ["1A", "1B"],
         d: ["2A", "1B"],
+      });
+    });
+  });
+
+  /*
+   * combineLatest() 对于同步数据如何处理?
+   * 由于 combineLatest() 是依次对上游 observable 进行订阅,
+   * 当它订阅第二个 observable 的时候, 第一个 observable 已经完结了, 此时第一个 observable 的最新数据永远是最后一个数据
+   */
+  it("should work sync observable", () => {
+    scheduler.run(({ expectObservable }) => {
+      const source01$ = of(1, 2, 3);
+      const source02$ = of("a", "b", "c");
+
+      const source$ = combineLatest([source01$, source02$]);
+      expectObservable(source$).toBe("(abc|)", {
+        a: [3, "a"],
+        b: [3, "b"],
+        c: [3, "c"],
       });
     });
   });
