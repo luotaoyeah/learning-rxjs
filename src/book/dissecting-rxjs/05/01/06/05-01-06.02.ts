@@ -6,7 +6,7 @@
  * 使用获取鼠标点击位置的坐标为例, 来展示 combineLatest() 多重依赖导致的问题
  */
 
-import { combineLatest, fromEvent, Observable } from "rxjs";
+import { combineLatest, fromEvent } from "rxjs";
 import { map } from "rxjs/operators";
 
 const click$ = fromEvent<MouseEvent>(document.querySelector("body")!, "click");
