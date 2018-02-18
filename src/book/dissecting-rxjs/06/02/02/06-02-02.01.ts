@@ -1,3 +1,3 @@
 /*
- * 6.2.1 every
+ * 6.2.2 find/findIndex
  */
