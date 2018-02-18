@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/04/02/01/04-02-01.ts", () => {
   });
 
   /*
-   * create 操作符已经被废弃了, 推荐直接使用 new Observable() 的方式来替代 create 操作符
+   * create() 操作符已经被废弃了, 推荐直接使用 new Observable() 的方式来替代 create() 操作符
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {

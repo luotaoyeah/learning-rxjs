@@ -10,7 +10,7 @@ function fn01<T, R>(): (project: (t: T) => R) => OperatorFunction<T, R> {
 }
 
 /*
- * 对于我们模拟实现的 map 操作符, 当下游退订时, 我们也应该通知上游进行退订
+ * 对于我们模拟实现的 map() 操作符, 当下游退订时, 我们也应该通知上游进行退订
  */
 function map<T, R>(project: (t: T) => R): OperatorFunction<T, R> {
   return (t: Observable<T>) => {

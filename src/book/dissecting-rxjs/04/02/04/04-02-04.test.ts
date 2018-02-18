@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/04/02/04/04-02-04.ts", () => {
   });
 
   /*
-   * generate 操作符类似于 for 循环, 可以设置: 初始值, 循环条件, 条件的递增, 产生的结果
+   * generate() 操作符类似于 for 循环, 可以设置: 初始值, 循环条件, 条件的递增, 产生的结果
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
@@ -33,7 +33,7 @@ describe("src/book/dissecting-rxjs/04/02/04/04-02-04.ts", () => {
   });
 
   /*
-   * 可以用 generate 来模拟 range 操作符
+   * 可以用 generate() 来模拟 range() 操作符
    */
   it("should simulate #range() with #generate()", () => {
     const myRange = (start: number, count: number): Observable<number> => {
