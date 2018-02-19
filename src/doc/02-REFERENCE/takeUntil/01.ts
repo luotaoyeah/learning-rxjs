@@ -12,8 +12,8 @@ console.log(
 );
 {
   /*
-   * takeUntil() 接收一个参数 notifier observable，
-   * 表示从 source observable 一直往 output observable 推送数据，
+   * takeUntil() 接收一个参数 notifier observable,
+   * 表示从 source observable 一直往 output observable 推送数据,
    * 直到 notifier observable 推送了它的第一个数据为止
    */
 
