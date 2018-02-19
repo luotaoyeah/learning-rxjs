@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { interval, of } from "rxjs";
-import { first, last, take } from "rxjs/operators";
+import { last, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/07/03/07-01-03.01.ts", () => {
   let scheduler: TestScheduler;
