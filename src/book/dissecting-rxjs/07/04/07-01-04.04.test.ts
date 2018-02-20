@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
-import { defer, interval, of, throwError, timer } from "rxjs";
-import { delay, map, takeUntil } from "rxjs/operators";
+import { interval, throwError, timer } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/07/04/07-01-04.04.ts", () => {
   let scheduler: TestScheduler;
