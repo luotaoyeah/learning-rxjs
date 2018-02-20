@@ -1,8 +1,8 @@
 import { TestScheduler } from "rxjs/testing";
 import { interval, of } from "rxjs";
-import { take, takeLast } from "rxjs/operators";
+import { last, take } from "rxjs/operators";
 
-describe("src/book/dissecting-rxjs/07/04/07-01-04.02.ts", () => {
+describe("src/book/dissecting-rxjs/07/01/03/07-01-03.01.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -12,27 +12,27 @@ describe("src/book/dissecting-rxjs/07/04/07-01-04.02.ts", () => {
   });
 
   /*
-   * takeLast() 表示从数据流中取后 n 个数据
+   * last() 和 first() 相反, 用来查找最后一个满足条件的数据
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {
-      const source$ = of(1, 2, 3, 4, 5).pipe(takeLast(2));
+      const source$ = of(1, 2, 3, 4, 5).pipe(last(i => i % 2 === 0));
 
-      expectObservable(source$).toBe("(ab|)", { a: 4, b: 5 });
+      expectObservable(source$).toBe("(a|)", { a: 4 });
     });
   });
 
   /*
-   * 对于异步数据, takeLast() 会在上游的 observable 完结之后, 一次性吐出所有数据
+   * last() 会等到上游的 observable 完结之后, 才会吐出数据
    */
   it("should work 02", () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(1000).pipe(
         take(5),
-        takeLast(2),
+        last(i => i % 2 === 0),
       );
 
-      expectObservable(source$).toBe("5s (ab|)", { a: 3, b: 4 });
+      expectObservable(source$).toBe("5s (a|)", { a: 4 });
     });
   });
 });

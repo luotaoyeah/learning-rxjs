@@ -2,7 +2,7 @@ import { TestScheduler } from "rxjs/testing";
 import { interval } from "rxjs";
 import { takeWhile } from "rxjs/operators";
 
-describe("src/book/dissecting-rxjs/07/04/07-01-04.03.ts", () => {
+describe("src/book/dissecting-rxjs/07/01/04/07-01-04.03.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {

@@ -1,8 +1,8 @@
 import { TestScheduler } from "rxjs/testing";
-import { interval, timer } from "rxjs";
-import { skip, skipUntil, take } from "rxjs/operators";
+import { interval } from "rxjs";
+import { skip, take } from "rxjs/operators";
 
-describe("src/book/dissecting-rxjs/07/07/07-01-07.02.ts", () => {
+describe("src/book/dissecting-rxjs/07/01/06/07-01-06.01.ts", () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -12,14 +12,15 @@ describe("src/book/dissecting-rxjs/07/07/07-01-07.02.ts", () => {
   });
 
   /*
-   * skipUntil() 表示一直跳过数据, 直到参数 notifier$ 吐出第一个数据为止
+   * skip() 表示跳过前 n 个数据, 截取后面的所有数据
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(1000).pipe(
         take(5),
-        skipUntil(timer(2500)),
+        skip(2),
       );
+
       expectObservable(source$).toBe("3s a 999ms b 999ms (c|)", {
         a: 2,
         b: 3,
