@@ -1,3 +1,3 @@
 /*
- * 7.2.1 debounceTIme
+ * 7.2.1 debounceTime
  */
