@@ -1,3 +1,3 @@
 /*
- * 7.1.7 skipWhile/skipUntil
+ * 7.1.7 skipWhile
  */
