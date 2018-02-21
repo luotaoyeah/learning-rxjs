@@ -1,7 +1,7 @@
 {
   "name": "@luotao/learning-rxjs",
   "version": "0.0.1",
-  "description": "learning-rxjs",
+  "description": "@luotao/learning-rxjs",
   "author": "luotao",
   "scripts": {
     "dev": "rimraf ./dist && webpack && node ./dist/index.js",

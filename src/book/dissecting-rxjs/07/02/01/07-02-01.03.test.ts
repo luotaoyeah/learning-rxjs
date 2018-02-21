@@ -45,8 +45,8 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
   });
 
   /*
-   * throttle() 和 throttleTime() 可以接受一个配置参数, 用来配置 heading 和 trailing, 默认为: { heading: true, trailing: false },
-   * heading 和 trailing 的含义是什么?
+   * throttle() 和 throttleTime() 可以接受一个配置参数, 用来配置 leading 和 trailing, 默认为: { leading: true, trailing: false },
+   * leading 和 trailing 的含义是什么?
    *   假设 duration 为 1s, throttle() 的工作过程为:
    *     接收到数据, 关闭通道 1s 中, 1s 之后打开,
    *     接收到数据, 关闭通道 1s 中, 1s 之后打开,
@@ -54,7 +54,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
    *     ...
    *
    * 在这个关闭通道 1s 中这个时间内, 上游的 observabl 可能会继续吐出数据, 也就是说在这 1s 中上游的 observable 会吐出多个数据, 那么把哪个数据吐给下游呢?
-   *   如果 heading: true 表示把第一个数据吐给下游, 并且是在关闭通道的时刻吐出,
+   *   如果 leading: true 表示把第一个数据吐给下游, 并且是在关闭通道的时刻吐出,
    *   如果 trailing: true 表示把最后一个数据吐给下游, 并且是在打开通道的时刻吐出
    */
   it("should work with trailing", () => {
