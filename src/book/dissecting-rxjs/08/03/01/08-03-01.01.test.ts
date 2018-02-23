@@ -2,6 +2,7 @@ import { TestScheduler } from "rxjs/testing";
 import { interval } from "rxjs";
 import {
   combineAll,
+  concatAll,
   count,
   elementAt,
   exhaust,
@@ -43,6 +44,87 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
 
       expectObservable(source$).toBe("1s (a|)", {
         a: 3,
+      });
+    });
+  });
+
+  /*
+   * windowTime() 的第二个参数, 表示时间块开始时刻之间的间隔时间, 默认跟第一个参数值一样(即间隔的时间跟持续的时间一样, 因此时间块是一个接着一个的),
+   * 如果第一个参数 windowTimeSpan 大于第二个参数 windowCreationInterval, 则时间块之间有可能会有重复数据,
+   * 如果第一个参数 windowTimeSpan 小于第二个参数 windowCreationInterval, 则时间块之间可能会有上游的数据被丢弃
+   */
+  it("should work with #windowCreationInterval", () => {
+    scheduler.run(({ expectObservable }) => {
+      const source$ = interval(100).pipe(take(10));
+
+      expectObservable(
+        source$.pipe(
+          windowTime(400),
+          count(),
+        ),
+      ).toBe("1s (a|)", {
+        a: 3,
+      });
+
+      expectObservable(
+        source$.pipe(
+          windowTime(400, 200),
+          count(),
+        ),
+      ).toBe("1s (a|)", {
+        a: 6,
+      });
+
+      /*
+       * span$ 是一个 hot observabl, 因此如果两个 span$ 重叠在一起时, 如果使用 concatAll() 操作符,
+       * 那么当地一个 span$ 完结的时候, 去订阅第二个 span$ 的时候, 第二个 span$ 已经吐出了一些数据, 这些数据就会丢失
+       */
+      expectObservable(
+        source$.pipe(
+          windowTime(400, 200),
+          concatAll(),
+        ),
+      ).toBe(
+        "100ms a 99ms b 99ms c 99ms d 99ms e 99ms f 99ms g 99ms h 99ms i 99ms (j|)",
+        {
+          a: 0,
+          b: 1,
+          c: 2,
+          d: 3,
+          e: 4,
+          f: 5,
+          g: 6,
+          h: 7,
+          i: 8,
+          j: 9,
+        },
+      );
+
+      expectObservable(
+        source$.pipe(
+          windowTime(400, 600),
+          count(),
+        ),
+      ).toBe("1s (a|)", {
+        a: 2,
+      });
+
+      /*
+       * 当 span$ 到时间之后就会被退订, 此时如果刚好上游数据吐出, 则该数据会被丢失, 因为 span$ 会先被退订
+       */
+      expectObservable(
+        source$.pipe(
+          windowTime(400, 600),
+          concatAll(),
+        ),
+      ).toBe("100ms a 99ms b 99ms c 299ms f 99ms g 99ms h 99ms i 99ms |", {
+        a: 0,
+        b: 1,
+        c: 2,
+        f: 5,
+        g: 6,
+        h: 7,
+        i: 8,
       });
     });
   });
