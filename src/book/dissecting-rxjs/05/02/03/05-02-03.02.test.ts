@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/05/02/03/05-02-03.02.ts", () => {
   });
 
   /*
-   * switchAll() 的策略是: 只要有新的 inner observable 产生, 就回去订阅这个新的 inner observable
+   * switchAll() 的策略是: 只要有新的 inner observable 产生, 就会去订阅这个新的 inner observable
    * exhaust() 的策略是: 只有在当前订阅的 inner observable 完结之后, 才会去订阅新的 inner observable
    */
   it("should work", () => {

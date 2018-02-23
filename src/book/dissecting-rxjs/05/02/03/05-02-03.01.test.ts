@@ -13,7 +13,7 @@ describe("src/book/dissecting-rxjs/05/02/03/05-02-03.01.ts", () => {
 
   /*
    * switchAll() 用于 high order observable, 作用是: 始终切换到最新吐出的 inner observable,
-   * 当 high observable 吐出一个新的 inner observable 时, switch() 就会退订原来订阅的 inner observable, 然后订阅这个新的 inner observable
+   * 当 high observable 吐出一个新的 inner observable 时, switchAll() 就会退订原来订阅的 inner observable, 然后订阅这个新的 inner observable
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {
