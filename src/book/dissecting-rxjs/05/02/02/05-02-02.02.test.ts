@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/05/02/02/05-02-02.02.ts", () => {
   });
 
   /*
-   * mergeAll() 类似于 merge(), 它的上游数据来自一个高阶 observable 突出的 observable 数据
+   * mergeAll() 类似于 merge(), 它的上游数据来自一个高阶 observable 吐出的 observable 数据
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {

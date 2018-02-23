@@ -13,7 +13,7 @@ describe("src/book/dissecting-rxjs/07/02/04/07-02-04.03.ts", () => {
 
   /*
    * distinct() 会在内部维护一个数据集合, 用来记录唯一的数据, 从而保证相同的数据只取一次,
-   * 我们可以通过参数, 让这个数据集合在指定的时机进行重置, 参数是一个 observable 对象, 记为 flushes$, 当 flushes$ 突出第一个数据时, 内部数据集合就会重置
+   * 我们可以通过参数, 让这个数据集合在指定的时机进行重置, 参数是一个 observable 对象, 记为 flushes$, 当 flushes$ 吐出第一个数据时, 内部数据集合就会重置
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {
