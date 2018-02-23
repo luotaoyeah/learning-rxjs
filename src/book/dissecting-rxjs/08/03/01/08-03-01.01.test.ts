@@ -1,16 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { interval } from "rxjs";
-import {
-  combineAll,
-  concatAll,
-  count,
-  elementAt,
-  exhaust,
-  skip,
-  take,
-  windowTime,
-  zipAll,
-} from "rxjs/operators";
+import { concatAll, count, exhaust, take, windowTime } from "rxjs/operators";
 
 /*
  * 回压控制(back-pressure)有两种方式: 有损和无损,
@@ -30,7 +20,8 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
 
   /*
    * windowTime() 将时间分成多个时间块, 在每个时间块的开始时刻, 会给下游吐一个 observable 对象, 记为 span$,
-   * 在这个时间块中, 每当上游有数据来时, 就会通过这个 span$ 将数据吐给下游
+   * 在这个时间块中, 每当上游有数据来时, 就会通过这个 span$ 将数据吐给下游,
+   * 第一个时间块是从时刻 0 开始的
    *
    * windowTime() 的第一个参数, 表示每个时间块的持续时间
    */
@@ -77,7 +68,7 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
 
       /*
        * span$ 是一个 hot observabl, 因此如果两个 span$ 重叠在一起时, 如果使用 concatAll() 操作符,
-       * 那么当地一个 span$ 完结的时候, 去订阅第二个 span$ 的时候, 第二个 span$ 已经吐出了一些数据, 这些数据就会丢失
+       * 那么当第一个 span$ 完结的时候, 去订阅第二个 span$ 的时候, 第二个 span$ 已经吐出了一些数据, 这些数据就会丢失
        */
       expectObservable(
         source$.pipe(
@@ -109,9 +100,6 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
         a: 2,
       });
 
-      /*
-       * 当 span$ 到时间之后就会被退订, 此时如果刚好上游数据吐出, 则该数据会被丢失, 因为 span$ 会先被退订
-       */
       expectObservable(
         source$.pipe(
           windowTime(400, 600),
@@ -125,6 +113,26 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
         g: 6,
         h: 7,
         i: 8,
+      });
+    });
+  });
+
+  it("should work with #maxWindowSize", () => {
+    scheduler.run(({ expectObservable }) => {
+      const source$ = interval(100).pipe(take(10));
+
+      expectObservable(
+        source$.pipe(
+          windowTime(400, 400, 2),
+          exhaust(),
+        ),
+      ).toBe("100ms a 99ms b 199ms c 99ms d 299ms e 99ms f 99ms |", {
+        a: 0,
+        b: 1,
+        c: 3,
+        d: 4,
+        e: 7,
+        f: 8,
       });
     });
   });

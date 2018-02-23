@@ -1,7 +1,7 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
 import { Observable, of, Subscriber } from "rxjs";
-import { delay, repeat, take } from "rxjs/operators";
+import { repeat, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/04/02/05/04-02-05.ts", () => {
   let scheduler: TestScheduler;

@@ -1,5 +1,5 @@
 import { TestScheduler } from "rxjs/testing";
-import { NEVER, never, throwError } from "rxjs";
+import { NEVER, never } from "rxjs";
 
 describe("src/book/dissecting-rxjs/04/02/06/04-02-06.03.ts", () => {
   let scheduler: TestScheduler;

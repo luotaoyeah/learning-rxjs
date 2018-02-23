@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { RunHelpers } from "rxjs/internal/testing/TestScheduler";
-import { of, range } from "rxjs";
+import { range } from "rxjs";
 
 describe("src/book/dissecting-rxjs/04/02/03/04-02-03.ts", () => {
   let scheduler: TestScheduler;

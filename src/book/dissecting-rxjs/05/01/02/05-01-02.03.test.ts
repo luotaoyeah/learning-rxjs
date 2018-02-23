@@ -1,6 +1,5 @@
 import { TestScheduler } from "rxjs/testing";
-import { fromEvent, interval, merge } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { fromEvent, merge } from "rxjs";
 import { EventEmitter } from "events";
 
 describe("src/book/dissecting-rxjs/05/01/02/05-01-02.03.ts", () => {
