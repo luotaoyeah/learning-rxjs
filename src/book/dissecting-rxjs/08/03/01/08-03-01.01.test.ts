@@ -67,7 +67,7 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
       });
 
       /*
-       * span$ 是一个 hot observabl, 因此如果两个 span$ 重叠在一起时, 如果使用 concatAll() 操作符,
+       * span$ 是一个 hot observable, 因此如果两个 span$ 重叠在一起时, 如果使用 concatAll() 操作符,
        * 那么当第一个 span$ 完结的时候, 去订阅第二个 span$ 的时候, 第二个 span$ 已经吐出了一些数据, 这些数据就会丢失
        */
       expectObservable(
@@ -100,6 +100,9 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
         a: 2,
       });
 
+      /*
+       * 时间块结束的时候, 如果刚好有上游数据来, 则该数据会进入下一个时间块, 因为这个时间块会先完结
+       */
       expectObservable(
         source$.pipe(
           windowTime(400, 600),
@@ -117,6 +120,9 @@ describe("src/book/dissecting-rxjs/08/03/01/08-03-01.01.ts", () => {
     });
   });
 
+  /*
+   * windowTime() 的第三个参数, 用来设置每个 span$ 最多只能吐出多少个数据, 只要吐出的数据达到个数, span$ 就会立即完结
+   */
   it("should work with #maxWindowSize", () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(100).pipe(take(10));

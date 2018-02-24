@@ -3,6 +3,6 @@
  */
 
 /*
- * from() 用来将其他数据转换为 observabl 数据流,
+ * from() 用来将其他数据转换为 observable 数据流,
  * 包括 array/array-like/iterable/generator/string/promise 数据
  */
