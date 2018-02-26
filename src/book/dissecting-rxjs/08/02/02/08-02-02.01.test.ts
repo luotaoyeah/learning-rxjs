@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/08/02/02/08-02-02.01.ts", () => {
   });
 
   /*
-   * mapTo() 表示把每个上游数据都映射为指定的值
+   * mapTo() 表示把每个上游数据都映射为指定的值, 相当于一个简单版本的 map()
    */
   it("should work", () => {
     scheduler.run(({ expectObservable }) => {

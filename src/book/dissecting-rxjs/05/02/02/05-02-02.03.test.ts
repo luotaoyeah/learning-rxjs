@@ -50,9 +50,10 @@ describe("src/book/dissecting-rxjs/05/02/02/05-02-02.03.ts", () => {
 
       const source$ = ho$.pipe(zipAll());
 
-      expectObservable(source$).toBe("2s a 499ms (b|) ", {
+      expectObservable(source$).toBe("2.5s a 499ms b 499ms (c|) ", {
         a: ["0-0", "1-0"],
         b: ["0-1", "1-1"],
+        c: ["0-2", "1-2"],
       });
     });
   });
