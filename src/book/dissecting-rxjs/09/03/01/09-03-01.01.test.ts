@@ -1,6 +1,6 @@
 import { TestScheduler } from "rxjs/testing";
 import { of, range } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/09/03/01/09-03-01.01.ts", () => {
   let scheduler: TestScheduler;
@@ -62,6 +62,71 @@ describe("src/book/dissecting-rxjs/09/03/01/09-03-01.01.ts", () => {
         c: 9,
         d: 8,
       });
+    });
+  });
+
+  /*
+   * catchError() 参数函数的第二个参数 caught$ 表示上游产生错误的那个 observable 对象,
+   * 如果我们直接返回这个 caught$ 对象, 表示对这个 observable 对象进行重试
+   */
+  it("should work with #catchError() 02", () => {
+    scheduler.run(({ expectObservable }) => {
+      const source$ = range(1, 5).pipe(
+        map(i => {
+          if (i === 4) {
+            throw new Error("Ⅳ");
+          }
+
+          return i * i;
+        }),
+        catchError((err, caught) => {
+          return caught;
+        }),
+        take(10),
+      );
+
+      expectObservable(source$).toBe("(abcdefghij|)", {
+        a: 1,
+        b: 4,
+        c: 9,
+        d: 1,
+        e: 4,
+        f: 9,
+        g: 1,
+        h: 4,
+        i: 9,
+        j: 1,
+      });
+    });
+  });
+
+  /*
+   * 可以在 catchError() 中抛出一个新的错误
+   */
+  it("should work with #catchError() 03", () => {
+    scheduler.run(({ expectObservable }) => {
+      const source$ = range(1, 5).pipe(
+        map(i => {
+          if (i === 4) {
+            throw new Error("");
+          }
+
+          return i * i;
+        }),
+        catchError(() => {
+          throw new Error("④");
+        }),
+      );
+
+      expectObservable(source$).toBe(
+        "(abc#)",
+        {
+          a: 1,
+          b: 4,
+          c: 9,
+        },
+        new Error("④"),
+      );
     });
   });
 });
