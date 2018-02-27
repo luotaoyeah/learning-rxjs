@@ -27,7 +27,7 @@ describe("src/book/dissecting-rxjs/04/02/03/04-02-03.ts", () => {
   });
 
   /*
-   * 产生的数字可以是浮点数字
+   * 产生的数字可以是整数, 也可以是小数
    */
   it("should work with floating-point number", () => {
     scheduler.run(({ expectObservable }: RunHelpers) => {
