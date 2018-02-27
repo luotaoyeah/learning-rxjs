@@ -1,5 +1,5 @@
 import { TestScheduler } from "rxjs/testing";
-import { of, range } from "rxjs";
+import { of, range, throwError } from "rxjs";
 import { catchError, map, take } from "rxjs/operators";
 
 describe("src/book/dissecting-rxjs/09/03/01/09-03-01.01.ts", () => {
@@ -113,9 +113,7 @@ describe("src/book/dissecting-rxjs/09/03/01/09-03-01.01.ts", () => {
 
           return i * i;
         }),
-        catchError(() => {
-          throw new Error("④");
-        }),
+        catchError(() => throwError(new Error("④"))),
       );
 
       expectObservable(source$).toBe(
