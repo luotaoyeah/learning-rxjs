@@ -12,7 +12,7 @@ describe("src/book/dissecting-rxjs/10/03/04/10-03-04.02.ts", () => {
 
   /*
    * subject 既是一个 observable, 又是一个 observer,
-   * 同时, subject 还具有 subscription 的一些特性, 它拥有一个 Subject.unsubscribe() 方法,
+   * 同时, subject 还拥有一个 Subject.unsubscribe() 方法,
    * 当调用了 Subject.unsubscribe() 方法之后, 如果再调用 Subject.next()/Subject.error()/Subject.complete() 方法, 就会报错
    */
   it("should work", () => {

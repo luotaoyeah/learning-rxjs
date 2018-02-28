@@ -20,17 +20,16 @@ console.log(
 );
 {
   /*
-   * 默认情况下，
-   *     需要我们手动调用 ConnectableObservable.connect() 方法来启动 observable execution，
+   * 默认情况下,
+   *     需要我们手动调用 ConnectableObservable.connect() 方法来启动 observable execution,
    *     并且需要手动调用 Subscription.unsubscribe() 方法来终止 observable execution
    */
 
   const observable: Observable<number> = interval(500);
-  const subject: Subject<number> = new Subject<number>();
 
   const connectableObservable: ConnectableObservable<number> = observable.pipe<
     number
-  >(multicast<number>(subject)) as ConnectableObservable<number>;
+  >(multicast<number>(new Subject<number>())) as ConnectableObservable<number>;
 
   const subscription01: Subscription = connectableObservable.subscribe(
     (value: number) => {
