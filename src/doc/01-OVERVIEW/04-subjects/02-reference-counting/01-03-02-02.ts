@@ -14,9 +14,9 @@ console.log(
 );
 {
   /*
-   * ConnectableObservable 提供了一种机制：refCount()，能够实现：
-   *     当 observer 的数量从 0 变为 1 时，会自动帮我们调用 ConnectableObservable.connect() 方法启动 observable execution，
-   *     当 observer 的数量从 1 变为 0 时，会自动帮我们调用 Subscription.unsubscribe() 方法终止 observable execution
+   * ConnectableObservable 提供了一种机制: refCount(), 能够实现:
+   *     当 observer 的数量从 0 变为 1 时, 会自动帮我们调用 ConnectableObservable.connect() 方法启动 observable execution,
+   *     当 observer 的数量从 1 变为 0 时, 会自动帮我们调用 Subscription.unsubscribe() 方法终止 observable execution
    */
 
   const observable: Observable<number> = interval(500);
