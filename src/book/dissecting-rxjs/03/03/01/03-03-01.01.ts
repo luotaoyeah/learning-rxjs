@@ -1,9 +1,9 @@
 /*
  * 3.3.1 操作符函数的实现
- *     1. 返回⼀个全新的 Observable 对象
+ *     1. 返回一个全新的 Observable 对象
  */
 
-import { Observable, OperatorFunction } from "rxjs";
+import { Observable, OperatorFunction } from 'rxjs';
 
 function fn01<T, R>(): (project: (t: T) => R) => OperatorFunction<T, R> {
   /*
