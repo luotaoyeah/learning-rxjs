@@ -4,7 +4,7 @@
   "description": "@luotao/learning-rxjs",
   "author": "luotao",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config webpack.production.ts",
     "codecov": "codecov --token=fd34330d-bb19-4b11-aab0-0e4e39d88b08",
     "dev:node": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node ./dist/index.js",
     "dev:node:debug": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node %NODE_DEBUG_OPTION% ./dist/index.js",
@@ -26,6 +26,7 @@
     "@types/jsdom": "^12.2.4",
     "@types/node-fetch": "^2.5.5",
     "@types/webpack": "^4.41.10",
+    "@types/webpack-merge": "^4.1.5",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -44,6 +45,7 @@
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
   }
 }

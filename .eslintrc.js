@@ -46,7 +46,7 @@ module.exports = {
     'id-blacklist': ['error', 'any', 'Undefined'],
     'id-match': 'error',
     'import/no-extraneous-dependencies': 'error',
-    'import/no-internal-modules': 'error',
+    'import/no-internal-modules': 0,
     'max-classes-per-file': 'off',
     'new-parens': 'error',
     'no-bitwise': 'error',
