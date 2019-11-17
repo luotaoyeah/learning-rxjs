@@ -1,4 +1,4 @@
 {
-   "src/**/*.ts": ["tslint -c tslint.json"],
-   "*.{ts,js,json,html,css,scss,less,md,yml}": ["prettier --write", "git add"]
+   "src/**/*.ts": ["eslint"],
+   "*.{ts,js,json,html,css,scss,less,md,yml}": ["prettier --write"]
 }
