@@ -26,6 +26,7 @@ if (buttonEl) {
       flatMap((ms: number) => ajax(`https://timing-sense-score-board.herokuapp.com/score/${ms}`)),
       map((ajaxResponse: AjaxResponse) => ajaxResponse.response),
     )
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .subscribe((res: any) => {
       document.querySelector('#rank')!.innerHTML = `你超过了 ${res.rank}% 的用户`;
     });

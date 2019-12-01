@@ -1,8 +1,8 @@
-import { TestScheduler } from "rxjs/testing";
-import { repeatWhen, take } from "rxjs/operators";
-import { interval, Observable, of } from "rxjs";
+import { TestScheduler } from 'rxjs/testing';
+import { repeatWhen, take } from 'rxjs/operators';
+import { interval, Observable, of } from 'rxjs';
 
-describe("src/book/dissecting-rxjs/04/03/07/04-03-07.01.ts", () => {
+describe('src/book/dissecting-rxjs/04/03/07/04-03-07.01.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -21,21 +21,21 @@ describe("src/book/dissecting-rxjs/04/03/07/04-03-07.01.ts", () => {
    * 当 notifier$ 吐出 error 时, repeatWhen$ 就会吐出 error,
    * 当 notifier$ 吐出 next 时, repeatWhen$ 就会对 source$ 重新订阅
    */
-  it("should work", () => {
+  it('should work', () => {
     /*
      * notifier$ 每隔一秒吐出一个数据, 因此 repeatWhen$ 每隔一秒对 source$ 进行重新订阅
      */
     const source$ = of(1, 2);
     const notifier$ = interval(1000);
     const repeatWhen$ = source$.pipe(
-      // tslint:disable-next-line:no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       repeatWhen((subscriptions: Observable<any>) => {
         return notifier$;
       }),
     );
 
     scheduler.run(({ expectObservable }) => {
-      expectObservable(repeatWhen$.pipe(take(4))).toBe("(ab) 996ms (cd|)", {
+      expectObservable(repeatWhen$.pipe(take(4))).toBe('(ab) 996ms (cd|)', {
         a: 1,
         b: 2,
         c: 1,

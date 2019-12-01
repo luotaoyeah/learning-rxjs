@@ -1,12 +1,12 @@
-import { TestScheduler } from "rxjs/testing";
-import { asyncScheduler, range } from "rxjs";
-import { observeOn } from "rxjs/operators";
+import { TestScheduler } from 'rxjs/testing';
+import { asyncScheduler, range } from 'rxjs';
+import { observeOn } from 'rxjs/operators';
 
-describe("src/book/dissecting-rxjs/11/04/02/11-04-02.01.ts", () => {
+describe('src/book/dissecting-rxjs/11/04/02/11-04-02.01.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     scheduler = new TestScheduler((actual: any, expected: any) => {
       expect(actual).toEqual(expected);
     });
@@ -17,11 +17,11 @@ describe("src/book/dissecting-rxjs/11/04/02/11-04-02.01.ts", () => {
    * 这个新的 observable对象会使用指定的 scheduler 来控制数据的推送节奏
    *
    */
-  it("should work", () => {
+  it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = range(1, 3);
 
-      expectObservable(source$.pipe(observeOn(asyncScheduler))).toBe("(abc|)", {
+      expectObservable(source$.pipe(observeOn(asyncScheduler))).toBe('(abc|)', {
         a: 1,
         b: 2,
         c: 3,

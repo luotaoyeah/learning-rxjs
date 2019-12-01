@@ -18,7 +18,7 @@ console.log(chalk.red('\n-------------------------------------------------- 01')
   function double01(arr: Array<number>): Array<number> {
     const result: Array<number> = [];
 
-    // tslint:disable-next-line:prefer-for-of
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < arr.length; i++) {
       result.push(arr[i] * 2);
     }
@@ -28,7 +28,7 @@ console.log(chalk.red('\n-------------------------------------------------- 01')
 
   function double02(arr: Array<number>): Array<number> {
     // tslint:disable-next-line:only-arrow-functions
-    return arr.map(function(i: number) {
+    return arr.map(function (i: number) {
       return i * 2;
     });
   }
