@@ -9,6 +9,10 @@ import chalk from 'chalk';
 
 // 下面三个函数实现相同的功能, 但是具体的实现方式不一样, 越往下, 声明式的特点越明显
 
+/**
+ *
+ * @param arr
+ */
 function double01(arr: Array<number>): Array<number> {
   const results: Array<number> = [];
 
@@ -20,12 +24,20 @@ function double01(arr: Array<number>): Array<number> {
   return results;
 }
 
+/**
+ *
+ * @param arr
+ */
 function double02(arr: Array<number>): Array<number> {
   return arr.map(function (i: number) {
     return i * 2;
   });
 }
 
+/**
+ *
+ * @param arr
+ */
 const double03 = (arr: Array<number>): Array<number> => arr.map((i: number) => i * 2);
 
 export { double01, double02, double03 };
