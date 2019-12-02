@@ -2,8 +2,8 @@
 
 import { Observable, Subscriber } from 'rxjs';
 
-// `next()`     方法用来通知 observer 有数据出来了,
-// `complete()` 方法用来通知 observer 数据已经吐完了
+// `next()`     方法用来通知 observer: 有新的数据出来了,
+// `complete()` 方法用来通知 observer: 所有的数据都已经吐完了
 const source$ = new Observable((observer: Subscriber<number>) => {
   let n = 1;
   const timer = setInterval(() => {
