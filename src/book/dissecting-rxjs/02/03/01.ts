@@ -6,6 +6,7 @@ const source$: Observable<number> = new Observable((observer: Subscriber<number>
   let i = 0;
   setInterval(() => {
     observer.next(++i);
+    console.log(i);
   }, 1000);
 });
 
