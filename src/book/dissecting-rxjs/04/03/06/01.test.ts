@@ -11,7 +11,8 @@ describe('src/book/dissecting-rxjs/04/03/06/01.ts', () => {
     });
   });
 
-  // ajax() 将一个 ajax 请求转化为一个 observable
+  // 浏览器自带的 fetch() 请求返回的是一个 promise,
+  // rxjs 提供的 ajax()  请求返回的是一个 observable
   it('should work', () => {
     let star = 0;
 
