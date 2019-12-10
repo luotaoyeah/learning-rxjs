@@ -42,4 +42,17 @@ describe('src/book/dissecting-rxjs/04/03/07/01.ts', () => {
       });
     });
   });
+
+  // 如果直接将 notification$ 作为 notifier$, 就等价于 repeat()
+  it('should work 03', () => {
+    scheduler.run(({ expectObservable }) => {
+      const upstream$ = of(1, 2);
+      const notifier = (notification$: any) => notification$;
+
+      expectObservable(upstream$.pipe(repeatWhen(notifier), take(4))).toBe('(abab|)', {
+        a: 1,
+        b: 2,
+      });
+    });
+  });
 });
