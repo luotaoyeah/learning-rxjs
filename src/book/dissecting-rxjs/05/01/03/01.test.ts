@@ -28,13 +28,13 @@ describe('src/book/dissecting-rxjs/05/01/03/01.ts', () => {
     });
   });
 
-  // 下游的完结时机, 是由最先 complete 的上游决定的,
-  // 下游的数据个数, 是由数据个数最少的上游决定的
+  // 下游的数据个数, 是由 '数据个数最少的上游' 决定的, 记为 N,
+  // 下游的完结时机, 是由 '最后吐出 N 个数据的上游' 决定的,
   it('should work 02', () => {
     scheduler.run(({ expectObservable }) => {
-      // 数据个数最少
+      // 数据个数最少, 因此决定了下游的数据个数为 2,
+      // 吐出 2 个数据最慢, 因此决定了下游的完结时机
       const source01$ = interval(1000).pipe(take(2));
-      // 最先 complete
       const source02$ = of('a', 'b', 'c');
       const source03$ = timer(500, 1000).pipe(map((i) => `c___${i}`));
 
