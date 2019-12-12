@@ -1,8 +1,8 @@
 import { TestScheduler } from 'rxjs/testing';
 import { interval } from 'rxjs';
-import { map, take, zipAll } from 'rxjs/operators';
+import { combineAll, map, take } from 'rxjs/operators';
 
-describe('src/book/dissecting-rxjs/05/02/02/03.ts', () => {
+describe('src/book/dissecting-rxjs/05/02/02/04.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('src/book/dissecting-rxjs/05/02/02/03.ts', () => {
     });
   });
 
-  // 当 higher-order observable 完结之后, zipAll() 才能确定上游个数, 才会开始订阅所有上游
+  // combineAll() 跟 zipAll() 类似,也要等到 higher-order observable 完结之后, 才会开始订阅所有上游
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       const ho$ = interval(1000).pipe(
@@ -24,9 +24,12 @@ describe('src/book/dissecting-rxjs/05/02/02/03.ts', () => {
         ),
       );
 
-      expectObservable(ho$.pipe(zipAll())).toBe('2500ms a 499ms (b|) ', {
+      const source$ = ho$.pipe(combineAll());
+
+      expectObservable(source$).toBe('2500ms a 499ms (bc|)', {
         a: ['0-0', '1-0'],
-        b: ['0-1', '1-1'],
+        b: ['0-1', '1-0'],
+        c: ['0-1', '1-1'],
       });
     });
   });
