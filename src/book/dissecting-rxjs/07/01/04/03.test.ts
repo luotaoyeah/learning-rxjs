@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { interval } from 'rxjs';
+import { interval, MonoTypeOperatorFunction, Observable, Operator, Subscriber, TeardownLogic } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/07/01/04/03.ts', () => {
@@ -30,6 +30,37 @@ describe('src/book/dissecting-rxjs/07/01/04/03.ts', () => {
         b: 1,
         c: 2,
         d: 3,
+      });
+    });
+  });
+
+  // 使用 takeWhile() 模拟实现 take()
+  it('should work 03', () => {
+    const myTake = <T>(count: number): MonoTypeOperatorFunction<T> => {
+      return function (source$: Observable<T>) {
+        return source$.lift(new MyTakeOperator<T>(count));
+      };
+    };
+
+    class MyTakeOperator<T> implements Operator<T, T> {
+      private n: number = 0;
+
+      public constructor(private count: number) {}
+
+      call(subscriber: Subscriber<T>, source$: Observable<T>): TeardownLogic {
+        return source$
+          .pipe(takeWhile(() => ++this.n < this.count, true))
+          .subscribe(new MyTakeSubscriber<T>(subscriber));
+      }
+    }
+
+    class MyTakeSubscriber<T> extends Subscriber<T> {}
+
+    scheduler.run(({ expectObservable }) => {
+      expectObservable(interval(1000).pipe(myTake(3))).toBe('1s a 999ms b 999ms (c|)', {
+        a: 0,
+        b: 1,
+        c: 2,
       });
     });
   });
