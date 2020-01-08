@@ -1,8 +1,8 @@
-import { TestScheduler } from "rxjs/testing";
-import { concat, interval, timer } from "rxjs";
-import { map, take, throttle, throttleTime } from "rxjs/operators";
+import { TestScheduler } from 'rxjs/testing';
+import { concat, interval, timer } from 'rxjs';
+import { map, take, throttle, throttleTime } from 'rxjs/operators';
 
-describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
+describe('src/book/dissecting-rxjs/07/02/01/03.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -11,32 +11,25 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
     });
   });
 
-  /*
-   * throttle() 和 throttleTime() 的区别在于: 打开阀门的时机不一样,
-   * throttleTime() 可以看作是 throttle 的一个特例, 即 throttleTime() 是通过时间间隔来控制阀门打开的时机,
-   * 而 throttle() 是通过一个另外的 observable 来控制时机, 当这个 observable 吐出第一个数据时, 就会打开阀门,
-   */
-  it("should work", () => {
+  // throttle() 使用一个 duration$ 来计时, 当 duration$ 吐出第一个数据时/或者完结时, 停止计时
+  //
+  // throttle() 的工作原理:
+  //   1. 接受数据, 调用参数函数返回 duration$ 开始计时, 数据吐给下游
+  //        计时期间丢弃上游数据,
+  //   2. duration$ 吐出数据, 停止计时, 重复 1.
+  it('should work', () => {
     scheduler.run(({ expectObservable }) => {
-      const source$ = interval(600).pipe(take(6));
+      const source$ = timer(500, 500).pipe(take(6));
 
-      expectObservable(source$.pipe(throttleTime(1000))).toBe(
-        "600ms a 1199ms b 1199ms c 599ms |",
-        {
-          a: 0,
-          b: 2,
-          c: 4,
-        },
-      );
+      expectObservable(source$.pipe(throttleTime(1500))).toBe('500ms a 1499ms b 999ms |', {
+        a: 0,
+        b: 3,
+      });
 
-      expectObservable(source$.pipe(throttle(() => timer(1000)))).toBe(
-        "600ms a 1199ms b 1199ms c 599ms |",
-        {
-          a: 0,
-          b: 2,
-          c: 4,
-        },
-      );
+      expectObservable(source$.pipe(throttle(() => timer(1500)))).toBe('500ms a 1499ms b 999ms |', {
+        a: 0,
+        b: 3,
+      });
     });
   });
 
@@ -53,7 +46,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
    *   如果 leading: true 表示把第一个数据吐给下游, 并且是在关闭通道的时刻吐出,
    *   如果 trailing: true 表示把最后一个数据吐给下游, 并且是在打开通道的时刻吐出
    */
-  it("should work with trailing", () => {
+  it('should work with trailing', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(600).pipe(take(6));
 
@@ -64,7 +57,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("1600ms a 1199ms b 799ms (c|)", {
+      ).toBe('1600ms a 1199ms b 799ms (c|)', {
         a: 1,
         b: 3,
         c: 5,
@@ -77,7 +70,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("600ms a 999ms b 199ms c 999ms d 199ms e 599ms (f|)", {
+      ).toBe('600ms a 999ms b 199ms c 999ms d 199ms e 599ms (f|)', {
         a: 0,
         b: 1,
         c: 2,
@@ -99,7 +92,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
    * 对于 throttleTime() 来说, 如果上游的 observable 完结的时候, 最后一个时间窗口还没完, 则最后一个时间窗口中的最后一个数据会被吐出,
    * 对于 throttle() 来说, 如果上游的 observable 完结的时候, 最后一个 throttle$ 尚未吐出第一个数据, 则该窗口中的最后一个数据不会吐出
    */
-  it("should work with trailing by #throttle()", () => {
+  it('should work with trailing by #throttle()', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(600).pipe(take(6));
 
@@ -110,7 +103,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("1600ms a 1199ms b 799ms (c|)", {
+      ).toBe('1600ms a 1199ms b 799ms (c|)', {
         a: 1,
         b: 3,
         c: 5,
@@ -123,7 +116,7 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("1600ms a 999ms b 999ms (c|)", {
+      ).toBe('1600ms a 999ms b 999ms (c|)', {
         a: 1,
         b: 3,
         c: 4,
@@ -132,9 +125,9 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
       const source02$ = concat(
         interval(600).pipe(
           take(2),
-          map(i => `${i}A`),
+          map((i) => `${i}A`),
         ),
-        timer(1500).pipe(map(i => `${i}B`)),
+        timer(1500).pipe(map((i) => `${i}B`)),
       );
 
       expectObservable(
@@ -144,9 +137,9 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("1600ms a 1099ms (b|)", {
-        a: "1A",
-        b: "0B",
+      ).toBe('1600ms a 1099ms (b|)', {
+        a: '1A',
+        b: '0B',
       });
 
       expectObservable(
@@ -156,8 +149,8 @@ describe("src/book/dissecting-rxjs/07/02/01/07-02-01.03.ts", () => {
             trailing: true,
           }),
         ),
-      ).toBe("1600ms a 1099ms |", {
-        a: "1A",
+      ).toBe('1600ms a 1099ms |', {
+        a: '1A',
       });
     });
   });
