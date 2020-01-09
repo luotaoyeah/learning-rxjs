@@ -18,7 +18,7 @@ describe('src/book/dissecting-rxjs/07/02/01/02.ts', () => {
   //        计时期间无新的数据:
   //          2. 停止计时, 数据吐给下游, 重复 1.
   //
-  // 注意, 如果最后一个"最新数据"的计时还没结束时上游就完结了, 则最后这个"最新数据"也会吐出
+  // 注意, 如果最后一个"最新数据"的计时还没停止时上游就完结了, 则最后这个"最新数据"也会吐出
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       expectObservable(timer(500, 500).pipe(take(6), throttleTime(1500))).toBe('500ms a 1499ms b 999ms |', {

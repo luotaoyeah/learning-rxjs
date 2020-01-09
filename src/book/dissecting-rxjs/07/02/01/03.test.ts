@@ -86,6 +86,7 @@ describe('src/book/dissecting-rxjs/07/02/01/03.ts', () => {
     });
   });
 
+  // 如果 { trailing: true },
   // 对于 throttleTime() 来说, 如果上游完结的时候, 计时还没停止, 则最后一个数据会被吐出,
   // 对于 throttle() 来说,     如果上游完结的时候, 计时还没停止, 则最后一个数据不会吐出
   it('should work 03', () => {
