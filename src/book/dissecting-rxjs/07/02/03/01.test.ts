@@ -11,7 +11,7 @@ describe('src/book/dissecting-rxjs/07/02/03/01.ts', () => {
     });
   });
 
-  // sampleTime() 将时间轴均匀地分成多个时间块, 在每个时间块的终点, 吐出这个时间块中的最后一个数据
+  // sampleTime() 将时间轴均匀地分成多个时间块, 在每个时间块的终点, 吐出这个期间的最后一个数据
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = concat(
