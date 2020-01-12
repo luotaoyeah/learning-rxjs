@@ -1,8 +1,8 @@
 import { TestScheduler } from 'rxjs/testing';
 import { interval } from 'rxjs';
-import { map, switchMap, take } from 'rxjs/operators';
+import { exhaustMap, map, take } from 'rxjs/operators';
 
-describe('src/book/dissecting-rxjs/08/04/03/01.ts', () => {
+describe('src/book/dissecting-rxjs/08/04/04/01.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
@@ -11,24 +11,23 @@ describe('src/book/dissecting-rxjs/08/04/03/01.ts', () => {
     });
   });
 
-  // switchMap() 等价于 map() + switchAll()
+  // exhaustMap() 等价于 map() + exhaust()
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(200).pipe(
         take(2),
-        switchMap((i) =>
-          interval(150).pipe(
+        exhaustMap((i) =>
+          interval(100).pipe(
             take(3),
             map((j) => `${i}-${j}`),
           ),
         ),
       );
 
-      expectObservable(source$).toBe('350ms a 199ms b 149ms c 149ms (d|)', {
+      expectObservable(source$).toBe('300ms a 99ms b 99ms (c|)', {
         a: '0-0',
-        b: '1-0',
-        c: '1-1',
-        d: '1-2',
+        b: '0-1',
+        c: '0-2',
       });
     });
   });
