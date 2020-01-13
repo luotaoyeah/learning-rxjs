@@ -45,7 +45,7 @@ describe('src/book/dissecting-rxjs/09/03/01/01.ts', () => {
         take(6),
         map((i) => {
           if (i === 4) {
-            throw new Error('④');
+            throw new Error();
           }
 
           return i;
@@ -71,7 +71,7 @@ describe('src/book/dissecting-rxjs/09/03/01/01.ts', () => {
       const source$ = range(1, 5).pipe(
         map((i) => {
           if (i === 4) {
-            throw new Error('④');
+            throw new Error();
           }
 
           return i;
