@@ -13,7 +13,7 @@ jobs:
       - save_cache:
           key: learning-rxjs-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - "node_modules"
+            - 'node_modules'
       - run:
           name: build
           command: npm run build
@@ -30,10 +30,12 @@ jobs:
       - save_cache:
           key: learning-rxjs-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - "node_modules"
+            - 'node_modules'
       - run:
           name: unit test
           command: npm run test
+          encironment:
+            NODE_OPTIONS: --max-old-space-size=4096
       - run:
           name: codecov
           command: npm run codecov
