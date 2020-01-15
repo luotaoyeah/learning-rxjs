@@ -1,5 +1,5 @@
-import { AsyncSubject, interval } from 'rxjs';
-import { multicast, publishLast, refCount, take } from 'rxjs/operators';
+import { interval } from 'rxjs';
+import { publishLast, refCount, take } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/10/05/01/01.ts', () => {
   beforeAll(() => {

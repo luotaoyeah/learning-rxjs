@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { interval, ArgumentOutOfRangeError } from 'rxjs';
+import { ArgumentOutOfRangeError, interval } from 'rxjs';
 import { elementAt, first, take } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/07/03/02/01.ts', () => {

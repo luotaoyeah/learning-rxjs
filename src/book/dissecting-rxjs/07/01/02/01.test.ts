@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { EmptyError, interval, of } from 'rxjs';
+import { EmptyError, interval } from 'rxjs';
 import { first, map, take } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/07/01/02/01.ts', () => {

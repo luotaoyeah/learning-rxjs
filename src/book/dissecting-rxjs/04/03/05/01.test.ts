@@ -5,6 +5,14 @@ import { EventEmitter } from 'events';
 describe('src/book/dissecting-rxjs/04/03/05/01.ts', () => {
   let scheduler: TestScheduler;
 
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   beforeEach(() => {
     scheduler = new TestScheduler((actual, expected) => {
       expect(actual).toEqual(expected);
@@ -43,8 +51,6 @@ describe('src/book/dissecting-rxjs/04/03/05/01.ts', () => {
   });
 
   it('should work 02', () => {
-    jest.useFakeTimers();
-
     const actual: Array<number> = [];
 
     const subscription = fromEventPattern<number>(
@@ -72,7 +78,5 @@ describe('src/book/dissecting-rxjs/04/03/05/01.ts', () => {
     jest.advanceTimersByTime(4000);
 
     expect(JSON.stringify(actual)).toEqual(JSON.stringify([1, 2, 3]));
-
-    jest.useRealTimers();
   });
 });

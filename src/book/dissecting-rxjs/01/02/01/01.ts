@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 // 函数式编程（Functional Programming）中的 function 有以下几个特点:
 //     1. 声明式（declarative）
 //     2. 纯函数（pure function）

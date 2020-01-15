@@ -25,13 +25,11 @@ describe('src/book/dissecting-rxjs/04/03/06/01.ts', () => {
     }).subscribe({
       next: (value: AjaxResponse) => {
         star = value.response.stargazers_count;
-        console.log('NEXT:', star);
+        expect(star).toBeGreaterThan(20000);
       },
       complete: () => {
         console.log('COMPLETE');
       },
     });
-
-    expect(star).toBeGreaterThan(20000);
   });
 });

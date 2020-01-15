@@ -1,6 +1,6 @@
-import { asapScheduler, asyncScheduler, queueScheduler } from "rxjs";
+import { asapScheduler, asyncScheduler, queueScheduler } from 'rxjs';
 
-describe("src/book/dissecting-rxjs/11/03/03/11-03-03.01.ts", () => {
+describe('src/book/dissecting-rxjs/11/03/03/11-03-03.01.ts', () => {
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -9,21 +9,21 @@ describe("src/book/dissecting-rxjs/11/03/03/11-03-03.01.ts", () => {
     jest.useRealTimers();
   });
 
-  it("should work", () => {
-    console.log("BEFORE");
+  it('should work', () => {
+    console.log('BEFORE');
 
     /*
      * asapScheduler 使用 microtask 队列来实现异步
      */
     asapScheduler.schedule(() => {
-      console.log("asap");
+      console.log('asap');
     });
 
     /*
      * asyncScheduler 等价于使用 setTimeout() 来实现异步
      */
     asyncScheduler.schedule(() => {
-      console.log("async");
+      console.log('async');
     });
 
     /*
@@ -32,10 +32,10 @@ describe("src/book/dissecting-rxjs/11/03/03/11-03-03.01.ts", () => {
      *   如果 delay 大于 0, 则跟 asyncScheduler 一样
      */
     queueScheduler.schedule(() => {
-      console.log("queue");
+      console.log('queue');
     });
 
-    console.log("AFTER");
+    console.log('AFTER');
 
     jest.advanceTimersByTime(1000);
   });

@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { concat, interval, of, timer } from 'rxjs';
+import { concat, interval, timer } from 'rxjs';
 import { count, filter, take } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/06/01/01/01.ts', () => {
