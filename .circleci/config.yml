@@ -34,7 +34,7 @@ jobs:
       - run:
           name: unit test
           command: npm run test
-          encironment:
+          environment:
             NODE_OPTIONS: --max-old-space-size=4096
       - run:
           name: codecov
