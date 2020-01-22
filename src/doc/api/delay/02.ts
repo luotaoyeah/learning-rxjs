@@ -3,13 +3,11 @@
  *     delay
  */
 
-import chalk from "chalk";
-import { interval } from "rxjs";
-import { delay } from "rxjs/operators";
+import chalk from 'chalk';
+import { interval } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 将 source observable 的数据推送延迟到某个时间点

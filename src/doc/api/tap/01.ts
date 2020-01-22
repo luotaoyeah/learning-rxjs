@@ -3,13 +3,11 @@
  *     tap
  */
 
-import chalk from "chalk";
-import { interval } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import chalk from 'chalk';
+import { interval } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * tap() 用来监视 + 拦截 source observable 的数据，然后执行一些 side effect 操作，

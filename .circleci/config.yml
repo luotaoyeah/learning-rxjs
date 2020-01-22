@@ -16,7 +16,7 @@ jobs:
             - 'node_modules'
       - run:
           name: build
-          command: npm run build
+          command: npm run build:prod
 
   test-learning-rxjs:
     working_directory: ~/learning-rxjs

@@ -3,13 +3,11 @@
  *     catchError
  */
 
-import chalk from "chalk";
-import { of } from "rxjs";
-import { map } from "rxjs/operators";
+import chalk from 'chalk';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * catchError 用来捕获并处理 observable 中抛出来的错误
@@ -23,7 +21,7 @@ console.log(
     .pipe(
       map((i: number) => {
         if (i % 4 === 0) {
-          throw new Error("FOUR");
+          throw new Error('FOUR');
         }
 
         return i;

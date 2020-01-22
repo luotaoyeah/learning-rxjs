@@ -3,13 +3,11 @@
  *     catchError
  */
 
-import chalk from "chalk";
-import { from, Observable, of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import chalk from 'chalk';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 在捕获到错误之后，catchError 可以返回一个新的 observable
@@ -19,7 +17,7 @@ console.log(
     .pipe<number, number>(
       map<number, number>((i: number) => {
         if (i % 4 === 0) {
-          throw new Error("FOUR");
+          throw new Error('FOUR');
         }
 
         return i;

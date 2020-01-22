@@ -1,4 +1,4 @@
-import { interval, ObjectUnsubscribedError, Subject } from 'rxjs';
+import { interval, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 describe('src/book/dissecting-rxjs/10/03/04/01.ts', () => {

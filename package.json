@@ -4,7 +4,7 @@
   "description": "@luotao/learning-rxjs",
   "author": "luotao",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config webpack.production.ts",
+    "build:prod": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config webpack.production.ts",
     "codecov": "codecov --token=fd34330d-bb19-4b11-aab0-0e4e39d88b08",
     "dev:node": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node ./dist/index.js",
     "dev:node:debug": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node %NODE_DEBUG_OPTION% ./dist/index.js",

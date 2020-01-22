@@ -3,13 +3,11 @@
  *     take
  */
 
-import chalk from "chalk";
-import { interval } from "rxjs";
-import { take } from "rxjs/operators";
+import chalk from 'chalk';
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * take 表示从 source observable 中截取开始的 n 个数据，
