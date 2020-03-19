@@ -3,7 +3,7 @@ import * as webpack from 'webpack';
 import webpackMerge = require('webpack-merge');
 import commonConfig from './webpack.config';
 
-const config: webpack.Configuration = webpackMerge(commonConfig, {
+const config: webpack.Configuration = webpackMerge.merge(commonConfig, {
   devtool: 'eval-source-map',
   mode: 'development',
 });
