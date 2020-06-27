@@ -23,7 +23,7 @@ if (buttonEl) {
   holdTime$
     .pipe(
       flatMap((ms: number) => ajax(`https://timing-sense-score-board.herokuapp.com/score/${ms}`)),
-      map((ajaxResponse: AjaxResponse<any>) => ajaxResponse.response),
+      map((ajaxResponse: AjaxResponse) => ajaxResponse.response),
     )
     .subscribe((res: any) => {
       document.querySelector('#rank')!.innerHTML = `你超过了 ${res.rank}% 的用户`;

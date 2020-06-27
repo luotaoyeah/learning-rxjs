@@ -15,14 +15,14 @@ describe('src/book/dissecting-rxjs/04/03/06/01.ts', () => {
   it('should work', () => {
     let star = 0;
 
-    ajax<any>({
+    ajax({
       url: 'https://api.github.com/repos/ReactiveX/rxjs',
       async: false,
       crossDomain: true,
       // @ts-ignore
       createXHR: () => new XMLHttpRequest(),
     }).subscribe({
-      next: (value: AjaxResponse<any>) => {
+      next: (value: AjaxResponse) => {
         star = value.response.stargazers_count;
         expect(star).toBeGreaterThan(20000);
       },

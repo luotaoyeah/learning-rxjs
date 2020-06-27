@@ -18,3 +18,7 @@ setTimeout(() => {
 observable.subscribe((value) => {
   console.log(chalk.redBright('订阅者 03'), value);
 });
+
+describe('src/book/dissecting-rxjs/07.过滤数据流/02.回压控制/04/02.test.ts', () => {
+  it('01', () => {});
+});

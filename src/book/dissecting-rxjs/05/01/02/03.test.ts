@@ -21,7 +21,7 @@ describe('src/book/dissecting-rxjs/05/01/02/03.ts', () => {
 
       const actual: Array<number | string> = [];
 
-      merge<[number, string]>(source01$, source02$).subscribe((value) => {
+      merge<number, string>(source01$, source02$).subscribe((value) => {
         actual.push(value);
       });
 
