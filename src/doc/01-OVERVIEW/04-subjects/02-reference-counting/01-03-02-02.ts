@@ -5,13 +5,11 @@
  *             Reference Counting
  */
 
-import chalk from "chalk";
-import { interval, Observable, Subject, Subscription } from "rxjs";
-import { multicast, refCount } from "rxjs/operators";
+import chalk from 'chalk';
+import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { multicast, refCount } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * ConnectableObservable 提供了一种机制: refCount(), 能够实现:
@@ -22,16 +20,11 @@ console.log(
   const observable: Observable<number> = interval(500);
   const subject: Subject<number> = new Subject<number>();
 
-  const observable02: Observable<number> = observable.pipe<number, number>(
-    multicast<number>(subject),
-    refCount<number>(),
-  );
+  const observable02: Observable<number> = observable.pipe<number, number>(multicast<number>(subject), refCount<number>());
 
-  const subscription01: Subscription = observable02.subscribe(
-    (value: number) => {
-      console.log(chalk.red(value.toString()));
-    },
-  );
+  const subscription01: Subscription = observable02.subscribe((value: number) => {
+    console.log(chalk.red(value.toString()));
+  });
 
   let subscription02: Subscription | null = null;
   setTimeout(() => {

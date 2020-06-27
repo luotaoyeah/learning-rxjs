@@ -1,6 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
-import { XMLHttpRequest } from 'xmlhttprequest';
 
 describe('src/book/dissecting-rxjs/04/03/06/01.ts', () => {
   let scheduler: TestScheduler;
@@ -16,14 +15,14 @@ describe('src/book/dissecting-rxjs/04/03/06/01.ts', () => {
   it('should work', () => {
     let star = 0;
 
-    ajax({
+    ajax<any>({
       url: 'https://api.github.com/repos/ReactiveX/rxjs',
       async: false,
       crossDomain: true,
       // @ts-ignore
       createXHR: () => new XMLHttpRequest(),
     }).subscribe({
-      next: (value: AjaxResponse) => {
+      next: (value: AjaxResponse<any>) => {
         star = value.response.stargazers_count;
         expect(star).toBeGreaterThan(20000);
       },

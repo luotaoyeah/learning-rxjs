@@ -5,12 +5,10 @@
  *             Observable Can Deliver Values Either Synchronously Or Asynchronously
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 普通的 function 只能同步返回一个数据，
@@ -27,16 +25,14 @@ console.log(
     subscriber.complete();
   });
 
-  console.log(chalk.red("BEFORE"));
+  console.log(chalk.red('BEFORE'));
   observable.subscribe((value: number) => {
     console.log(chalk.red(value.toString()));
   });
-  console.log(chalk.red("AFTER"));
+  console.log(chalk.red('AFTER'));
 }
 
-console.log(
-  chalk.yellow("\n-------------------------------------------------- 02"),
-);
+console.log(chalk.yellow('\n-------------------------------------------------- 02'));
 {
   /*
    * 如下，observable 也可以异步返回多个数据
@@ -52,9 +48,9 @@ console.log(
     }, 1000);
   });
 
-  console.log(chalk.yellow("BEFORE"));
+  console.log(chalk.yellow('BEFORE'));
   observable.subscribe((value: number) => {
     console.log(chalk.yellow(value.toString()));
   });
-  console.log(chalk.yellow("AFTER"));
+  console.log(chalk.yellow('AFTER'));
 }

@@ -25,7 +25,7 @@ describe('src/book/dissecting-rxjs/06/02/04/01.ts', () => {
       expectObservable(EMPTY.pipe(defaultIfEmpty(9))).toBe('(a|)', { a: 9 });
 
       // 如果未设置默认值, 则默认值为 null
-      expectObservable(EMPTY.pipe(defaultIfEmpty())).toBe('(a|)', { a: null });
+      expectObservable(EMPTY.pipe(defaultIfEmpty(null))).toBe('(a|)', { a: null });
     });
   });
 });

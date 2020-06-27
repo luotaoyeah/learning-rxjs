@@ -5,19 +5,11 @@
  *             Reference Counting
  */
 
-import chalk from "chalk";
-import {
-  ConnectableObservable,
-  interval,
-  Observable,
-  Subject,
-  Subscription,
-} from "rxjs";
-import { multicast } from "rxjs/operators";
+import chalk from 'chalk';
+import { ConnectableObservable, interval, Observable, Subject, Subscription } from 'rxjs';
+import { multicast } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 默认情况下,
@@ -27,15 +19,13 @@ console.log(
 
   const observable: Observable<number> = interval(500);
 
-  const connectableObservable: ConnectableObservable<number> = observable.pipe<
-    number
-  >(multicast<number>(new Subject<number>())) as ConnectableObservable<number>;
+  const connectableObservable: ConnectableObservable<number> = observable.pipe<number>(
+    multicast<number>(new Subject<number>()),
+  ) as ConnectableObservable<number>;
 
-  const subscription01: Subscription = connectableObservable.subscribe(
-    (value: number) => {
-      console.log(chalk.red(value.toString()));
-    },
-  );
+  const subscription01: Subscription = connectableObservable.subscribe((value: number) => {
+    console.log(chalk.red(value.toString()));
+  });
 
   /*
    * 手动调用 ConnectableObservable.connect() 方法启动 observable execution

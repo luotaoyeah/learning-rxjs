@@ -26,23 +26,20 @@ describe('src/book/dissecting-rxjs/08/04/01/01.ts', () => {
         ),
       );
 
-      expectObservable(source$).toBe(
-        '1000ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms j 499ms k 499ms (l|)',
-        {
-          a: '0-0',
-          b: '0-1',
-          c: '0-2',
-          d: '1-0',
-          e: '1-1',
-          f: '1-2',
-          g: '2-0',
-          h: '2-1',
-          i: '2-2',
-          j: '3-0',
-          k: '3-1',
-          l: '3-2',
-        },
-      );
+      expectObservable(source$).toBe('1000ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms j 499ms k 499ms (l|)', {
+        a: '0-0',
+        b: '0-1',
+        c: '0-2',
+        d: '1-0',
+        e: '1-1',
+        f: '1-2',
+        g: '2-0',
+        h: '2-1',
+        i: '2-2',
+        j: '3-0',
+        k: '3-1',
+        l: '3-2',
+      });
     });
   });
 });

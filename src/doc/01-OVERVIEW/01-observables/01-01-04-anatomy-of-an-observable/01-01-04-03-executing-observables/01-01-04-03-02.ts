@@ -5,12 +5,10 @@
  *             Executing Observables
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 通常可以在 subscribe 函数中，通过 try/catch 捕获异常，
@@ -23,7 +21,7 @@ console.log(
       subscriber.next(2);
 
       /* 抛出一个异常 */
-      JSON.parse("");
+      JSON.parse('');
 
       subscriber.next(3);
       subscriber.complete();

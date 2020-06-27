@@ -1,5 +1,5 @@
 import { TestScheduler } from 'rxjs/testing';
-import { fromEvent, merge } from 'rxjs';
+import { fromEvent, merge, Observable } from 'rxjs';
 import { EventEmitter } from 'events';
 
 describe('src/book/dissecting-rxjs/05/01/02/03.ts', () => {
@@ -16,12 +16,12 @@ describe('src/book/dissecting-rxjs/05/01/02/03.ts', () => {
     scheduler.run(() => {
       const eventEmitter = new EventEmitter();
 
-      const source01$ = fromEvent(eventEmitter, 'foo');
-      const source02$ = fromEvent(eventEmitter, 'bar_');
+      const source01$ = fromEvent(eventEmitter, 'foo') as Observable<number>;
+      const source02$ = fromEvent(eventEmitter, 'bar_') as Observable<string>;
 
       const actual: Array<number | string> = [];
 
-      merge<number, string>(source01$, source02$).subscribe((value) => {
+      merge<[number, string]>(source01$, source02$).subscribe((value) => {
         actual.push(value);
       });
 

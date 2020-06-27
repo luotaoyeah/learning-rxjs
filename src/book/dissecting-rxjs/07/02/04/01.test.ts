@@ -77,19 +77,16 @@ describe('src/book/dissecting-rxjs/07/02/04/01.ts', () => {
       });
 
       const flushes$ = interval(2000);
-      expectObservable(source$.pipe(distinct(undefined, flushes$))).toBe(
-        'a 999ms b 999ms c 999ms d 999ms e 1999ms g 999ms h 999ms (i|)',
-        {
-          a: 0,
-          b: 1,
-          c: 1,
-          d: 2,
-          e: 0,
-          g: 1,
-          h: 3,
-          i: 3,
-        },
-      );
+      expectObservable(source$.pipe(distinct(undefined, flushes$))).toBe('a 999ms b 999ms c 999ms d 999ms e 1999ms g 999ms h 999ms (i|)', {
+        a: 0,
+        b: 1,
+        c: 1,
+        d: 2,
+        e: 0,
+        g: 1,
+        h: 3,
+        i: 3,
+      });
     });
   });
 });

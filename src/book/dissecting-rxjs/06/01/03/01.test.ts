@@ -39,13 +39,7 @@ describe('src/book/dissecting-rxjs/06/01/03/01.ts', () => {
         return function (upstream$: Observable<T>) {
           return upstream$.pipe(
             reduce((accu: T, current: T) => {
-              return typeof comparer === 'function'
-                ? comparer(accu, current) > 0
-                  ? accu
-                  : current
-                : accu > current
-                ? accu
-                : current;
+              return typeof comparer === 'function' ? (comparer(accu, current) > 0 ? accu : current) : accu > current ? accu : current;
             }),
           );
         };

@@ -21,16 +21,13 @@ describe('src/book/dissecting-rxjs/08/06/01/01.ts', () => {
 
       expectObservable(source$.pipe(reduce((acc, value) => acc + value, 0))).toBe('2500ms (a|)', { a: 10 });
 
-      expectObservable(source$.pipe(scan((acc, value) => acc + value, 0))).toBe(
-        '500ms a 499ms b 499ms c 499ms d 499ms (e|)',
-        {
-          a: 0,
-          b: 1,
-          c: 3,
-          d: 6,
-          e: 10,
-        },
-      );
+      expectObservable(source$.pipe(scan((acc, value) => acc + value, 0))).toBe('500ms a 499ms b 499ms c 499ms d 499ms (e|)', {
+        a: 0,
+        b: 1,
+        c: 3,
+        d: 6,
+        e: 10,
+      });
     });
   });
 });

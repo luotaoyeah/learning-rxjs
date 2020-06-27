@@ -3,12 +3,10 @@
  *     Subscription
  */
 
-import chalk from "chalk";
-import { interval, Observable, Subscription } from "rxjs";
+import chalk from 'chalk';
+import { interval, Observable, Subscription } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 当我们调用 Observable.subscribe() 方法时，返回的就是一个 subscription 对象，

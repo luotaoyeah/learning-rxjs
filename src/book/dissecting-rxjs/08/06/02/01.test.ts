@@ -25,16 +25,13 @@ describe('src/book/dissecting-rxjs/08/06/02/01.ts', () => {
         e: 10,
       });
 
-      expectObservable(source$.pipe(mergeScan((acc, value) => of(acc + value), 0))).toBe(
-        '100ms a 99ms b 99ms c 99ms d 99ms (e|)',
-        {
-          a: 0,
-          b: 1,
-          c: 3,
-          d: 6,
-          e: 10,
-        },
-      );
+      expectObservable(source$.pipe(mergeScan((acc, value) => of(acc + value), 0))).toBe('100ms a 99ms b 99ms c 99ms d 99ms (e|)', {
+        a: 0,
+        b: 1,
+        c: 3,
+        d: 6,
+        e: 10,
+      });
     });
   });
 });

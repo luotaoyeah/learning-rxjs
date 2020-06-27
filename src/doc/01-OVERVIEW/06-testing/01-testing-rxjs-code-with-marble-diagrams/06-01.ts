@@ -3,11 +3,9 @@
  *     Testing
  */
 
-import chalk from "chalk";
+import chalk from 'chalk';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * rxjs 提供了 TestScheduler 用来测试 rxjs,

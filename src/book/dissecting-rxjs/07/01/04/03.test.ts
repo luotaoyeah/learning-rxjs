@@ -48,9 +48,7 @@ describe('src/book/dissecting-rxjs/07/01/04/03.ts', () => {
       public constructor(private count: number) {}
 
       call(subscriber: Subscriber<T>, source$: Observable<T>): TeardownLogic {
-        return source$
-          .pipe(takeWhile(() => ++this.n < this.count, true))
-          .subscribe(new MyTakeSubscriber<T>(subscriber));
+        return source$.pipe(takeWhile(() => ++this.n < this.count, true)).subscribe(new MyTakeSubscriber<T>(subscriber));
       }
     }
 

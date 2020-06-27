@@ -5,13 +5,11 @@
  *             Creating Observables
  */
 
-import chalk from "chalk";
-import { interval, Observable, Subscriber } from "rxjs";
-import { take } from "rxjs/operators";
+import chalk from 'chalk';
+import { interval, Observable, Subscriber } from 'rxjs';
+import { take } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 可以使用 constructor 来创建一个新的 observable 对象，
@@ -20,7 +18,7 @@ console.log(
 
   const observable = new Observable((subscriber: Subscriber<string>) => {
     setInterval(() => {
-      subscriber.next("hi");
+      subscriber.next('hi');
     }, 1000);
   });
 
@@ -29,9 +27,7 @@ console.log(
   });
 }
 
-console.log(
-  chalk.yellow("\n-------------------------------------------------- 02"),
-);
+console.log(chalk.yellow('\n-------------------------------------------------- 02'));
 {
   /*
    * 也可以使用各种 creation function 来创建新的 observable 对象，

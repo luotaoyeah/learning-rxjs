@@ -4,12 +4,10 @@
  *         AsyncSubject
  */
 
-import chalk from "chalk";
-import { AsyncSubject } from "rxjs";
+import chalk from 'chalk';
+import { AsyncSubject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * AsyncSubject 的特点是：

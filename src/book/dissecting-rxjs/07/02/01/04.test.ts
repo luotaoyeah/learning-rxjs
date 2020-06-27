@@ -16,12 +16,9 @@ describe('src/book/dissecting-rxjs/07/02/01/04.ts', () => {
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
       expectObservable(
-        concat(
-          interval(500).pipe(take(3)),
-          interval(1000).pipe(take(2)),
-          interval(1500).pipe(take(2)),
-          interval(1000).pipe(take(2)),
-        ).pipe(debounce((value) => timer(value % 3 === 0 ? 1000 : 500))),
+        concat(interval(500).pipe(take(3)), interval(1000).pipe(take(2)), interval(1500).pipe(take(2)), interval(1000).pipe(take(2))).pipe(
+          debounce((value) => timer(value % 3 === 0 ? 1000 : 500)),
+        ),
       ).toBe('1500ms a 499ms b 1499ms c 499ms d 1999ms e 999ms f 1499ms (gh|)', {
         a: 1,
         b: 2,

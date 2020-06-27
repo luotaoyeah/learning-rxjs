@@ -4,13 +4,11 @@
  *         Multicasted Observables
  */
 
-import chalk from "chalk";
-import { ConnectableObservable, from, Observable, Subject } from "rxjs";
-import { multicast } from "rxjs/operators";
+import chalk from 'chalk';
+import { ConnectableObservable, from, Observable, Subject } from 'rxjs';
+import { multicast } from 'rxjs/operators';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 我们可以将一个 subject 当作一个 observer 传递给 Observable.subscribe() 方法，
@@ -23,9 +21,7 @@ console.log(
   const observable: Observable<number> = from<Array<number>>([11, 22, 33]);
   const subject: Subject<number> = new Subject<number>();
 
-  const connectableObservable: ConnectableObservable<number> = observable.pipe<
-    number
-  >(multicast(subject)) as ConnectableObservable<number>;
+  const connectableObservable: ConnectableObservable<number> = observable.pipe<number>(multicast(subject)) as ConnectableObservable<number>;
 
   /*
    * 调用 ConnectableObservable.subscribe() 方法，实际上底层调用的是 Subject.subscribe() 方法，

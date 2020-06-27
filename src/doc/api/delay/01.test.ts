@@ -31,14 +31,11 @@ describe('src/doc/api/delay/01.ts', () => {
   // 如果要对每个数据分别进行延迟, 可以结合 concatMap() 一起实现
   it('should work 02', () => {
     scheduler.run(({ expectObservable }) => {
-      expectObservable(of(1, 2, 3).pipe(concatMap((i) => of(i).pipe(delay(1000))))).toBe(
-        '1000ms a 999ms b 999ms (c|)',
-        {
-          a: 1,
-          b: 2,
-          c: 3,
-        },
-      );
+      expectObservable(of(1, 2, 3).pipe(concatMap((i) => of(i).pipe(delay(1000))))).toBe('1000ms a 999ms b 999ms (c|)', {
+        a: 1,
+        b: 2,
+        c: 3,
+      });
     });
   });
 });

@@ -3,12 +3,10 @@
  *     Subscription
  */
 
-import chalk from "chalk";
-import { interval, Observable, Subscription } from "rxjs";
+import chalk from 'chalk';
+import { interval, Observable, Subscription } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 可以调用 Subscription.add() 方法，添加一个 child subscription 对象，
@@ -19,17 +17,13 @@ console.log(
   const observable01: Observable<number> = interval(200);
   const observable02: Observable<number> = interval(400);
 
-  const subscription01: Subscription = observable01.subscribe(
-    (value: number) => {
-      console.log(chalk.red(value.toString()));
-    },
-  );
+  const subscription01: Subscription = observable01.subscribe((value: number) => {
+    console.log(chalk.red(value.toString()));
+  });
 
-  const subscription02: Subscription = observable02.subscribe(
-    (value: number) => {
-      console.log(chalk.yellow(value.toString()));
-    },
-  );
+  const subscription02: Subscription = observable02.subscribe((value: number) => {
+    console.log(chalk.yellow(value.toString()));
+  });
 
   /*
    * 添加一个 child subscription

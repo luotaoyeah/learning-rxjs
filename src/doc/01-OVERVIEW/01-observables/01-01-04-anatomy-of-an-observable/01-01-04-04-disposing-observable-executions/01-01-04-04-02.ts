@@ -5,12 +5,10 @@
  *             Disposing Observable Execution
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber, Subscription } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 我们可以通过调用 Subscription.unsubscribe() 方法终止 observable execution,
@@ -29,7 +27,7 @@ console.log(
      * 在 subscribe 函数中, 返回一个 function
      */
     return () => {
-      console.log(chalk.red("DISPOSING"));
+      console.log(chalk.red('DISPOSING'));
       clearInterval(timer);
     };
   });

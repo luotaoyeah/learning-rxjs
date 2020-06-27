@@ -5,12 +5,10 @@
  *             Subscribinig To Observables
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   const observable = new Observable((subscriber: Subscriber<number>) => {
     subscriber.next(9);

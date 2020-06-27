@@ -7,7 +7,6 @@ describe('src/book/dissecting-rxjs/12/02/05/02/12-02-05-02.02.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     scheduler = new TestScheduler((actual: any, expected: any) => {
       expect(actual).toEqual(expected);
     });

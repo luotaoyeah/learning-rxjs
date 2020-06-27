@@ -12,7 +12,6 @@ describe('src/book/dissecting-rxjs/12/02/05/01/12-02-05-01.01.ts', () => {
      * 可以让我们自定义如何对实际数据和期望数据进行比较,
      * 通常, 我们可以使用测试框架提供的方法, 比如下面的 toEqual() 方法
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     scheduler = new TestScheduler((actual: any, expected: any) => {
       expect(actual).toEqual(expected);
     });

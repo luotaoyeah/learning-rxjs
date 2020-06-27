@@ -20,37 +20,31 @@ describe('src/book/dissecting-rxjs/08/03/01/01.ts', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(500).pipe(take(10), windowTime(2000));
 
-      expectObservable(source$.pipe(mergeAll())).toBe(
-        '500ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms (j|)',
-        {
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3,
-          e: 4,
-          f: 5,
-          g: 6,
-          h: 7,
-          i: 8,
-          j: 9,
-        },
-      );
+      expectObservable(source$.pipe(mergeAll())).toBe('500ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms (j|)', {
+        a: 0,
+        b: 1,
+        c: 2,
+        d: 3,
+        e: 4,
+        f: 5,
+        g: 6,
+        h: 7,
+        i: 8,
+        j: 9,
+      });
 
-      expectObservable(source$.pipe(concatAll())).toBe(
-        '500ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms (j|)',
-        {
-          a: 0,
-          b: 1,
-          c: 2,
-          d: 3,
-          e: 4,
-          f: 5,
-          g: 6,
-          h: 7,
-          i: 8,
-          j: 9,
-        },
-      );
+      expectObservable(source$.pipe(concatAll())).toBe('500ms a 499ms b 499ms c 499ms d 499ms e 499ms f 499ms g 499ms h 499ms i 499ms (j|)', {
+        a: 0,
+        b: 1,
+        c: 2,
+        d: 3,
+        e: 4,
+        f: 5,
+        g: 6,
+        h: 7,
+        i: 8,
+        j: 9,
+      });
     });
   });
 
@@ -98,17 +92,14 @@ describe('src/book/dissecting-rxjs/08/03/01/01.ts', () => {
     scheduler.run(({ expectObservable }) => {
       const source$ = interval(500).pipe(take(10));
 
-      expectObservable(source$.pipe(windowTime(2000, 1000, 1), mergeAll())).toBe(
-        '500ms a 499ms b 999ms d 999ms f 999ms h 999ms (j|)',
-        {
-          a: 0,
-          b: 1,
-          d: 3,
-          f: 5,
-          h: 7,
-          j: 9,
-        },
-      );
+      expectObservable(source$.pipe(windowTime(2000, 1000, 1), mergeAll())).toBe('500ms a 499ms b 999ms d 999ms f 999ms h 999ms (j|)', {
+        a: 0,
+        b: 1,
+        d: 3,
+        f: 5,
+        h: 7,
+        j: 9,
+      });
     });
   });
 });

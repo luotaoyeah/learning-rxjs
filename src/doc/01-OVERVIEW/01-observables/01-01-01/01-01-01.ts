@@ -3,10 +3,10 @@
  *     Observable
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber } from 'rxjs';
 
-console.log("\n-------------------------------------------------- 01");
+console.log('\n-------------------------------------------------- 01');
 {
   /*
    * observable 是一个包含多个 value 的 lazy-push collection，
@@ -20,7 +20,7 @@ console.log("\n-------------------------------------------------- 01");
    */
 
   const observable = new Observable((subscriber: Subscriber<number>) => {
-    console.log(chalk.yellow("SUBSCRIBER"));
+    console.log(chalk.yellow('SUBSCRIBER'));
     subscriber.next(1);
     subscriber.next(2);
     subscriber.next(3);
@@ -47,9 +47,7 @@ console.log("\n-------------------------------------------------- 01");
    */
   observable.subscribe({
     next(value: number) {
-      console.log(
-        chalk.blue(`${new Date().toLocaleTimeString()} NEXT ${value}`),
-      );
+      console.log(chalk.blue(`${new Date().toLocaleTimeString()} NEXT ${value}`));
     },
     complete() {
       console.log(chalk.blue(`${new Date().toLocaleTimeString()} COMPLETE`));
@@ -62,9 +60,7 @@ console.log("\n-------------------------------------------------- 01");
   setTimeout(() => {
     observable.subscribe({
       next(value: number) {
-        console.log(
-          chalk.red(`${new Date().toLocaleTimeString()} NEXT ${value}`),
-        );
+        console.log(chalk.red(`${new Date().toLocaleTimeString()} NEXT ${value}`));
       },
       complete() {
         console.log(chalk.red(`${new Date().toLocaleTimeString()} COMPLETE`));

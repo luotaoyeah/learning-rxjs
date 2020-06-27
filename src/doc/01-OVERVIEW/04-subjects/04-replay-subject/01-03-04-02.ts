@@ -4,12 +4,10 @@
  *         ReplaySubject
  */
 
-import chalk from "chalk";
-import { ReplaySubject } from "rxjs";
+import chalk from 'chalk';
+import { ReplaySubject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * ReplaySubject 除了可以设置记录的数据个数（bufferSize），还可以设置窗口时间（windowTime），

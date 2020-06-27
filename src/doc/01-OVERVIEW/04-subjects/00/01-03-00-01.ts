@@ -3,12 +3,10 @@
  *     Subject
  */
 
-import chalk from "chalk";
-import { Subject } from "rxjs";
+import chalk from 'chalk';
+import { Subject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * subject 是一种特殊的 observable,

@@ -14,7 +14,7 @@ console.log(chalk.red('\n-------------------------------------------------- 01')
    * 进行再次尝试
    */
 
-  of<number, number, number, number, number>(1, 2, 3, 4, 5)
+  of<[number, number, number, number, number]>(1, 2, 3, 4, 5)
     .pipe(
       map<number, number>((value: number) => {
         if (value % 4 === 0) {

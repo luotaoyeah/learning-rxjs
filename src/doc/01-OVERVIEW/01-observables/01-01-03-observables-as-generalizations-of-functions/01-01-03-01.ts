@@ -4,10 +4,10 @@
  *         Observables as Generalizations Of Functions
  */
 
-import chalk from "chalk";
-import { Observable, Subscriber } from "rxjs";
+import chalk from 'chalk';
+import { Observable, Subscriber } from 'rxjs';
 
-console.log("\n-------------------------------------------------- 01");
+console.log('\n-------------------------------------------------- 01');
 {
   /*
    * 有一种误解，认为 observable 类似于 EventEmitter，或者类似于有多个值的 promise，实际上这两种看法都是不正确的，
@@ -15,7 +15,7 @@ console.log("\n-------------------------------------------------- 01");
    */
 
   function foo() {
-    console.log(chalk.red("foo"));
+    console.log(chalk.red('foo'));
     return 9;
   }
 
@@ -26,7 +26,7 @@ console.log("\n-------------------------------------------------- 01");
   console.log(chalk.red(`${y}`));
 }
 
-console.log("\n-------------------------------------------------- 02");
+console.log('\n-------------------------------------------------- 02');
 {
   /*
    * observable 和 function 一样，都是 lazy-evaluated 的，
@@ -41,7 +41,7 @@ console.log("\n-------------------------------------------------- 02");
    */
 
   const observable = new Observable((subscriber: Subscriber<number>) => {
-    console.log(chalk.yellow("foo"));
+    console.log(chalk.yellow('foo'));
     subscriber.next(9);
   });
 

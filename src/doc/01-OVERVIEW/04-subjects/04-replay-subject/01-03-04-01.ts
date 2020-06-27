@@ -4,12 +4,10 @@
  *         ReplaySubject
  */
 
-import chalk from "chalk";
-import { ReplaySubject } from "rxjs";
+import chalk from 'chalk';
+import { ReplaySubject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * ReplaySubject is similar to BehaviorSubject, the difference is:

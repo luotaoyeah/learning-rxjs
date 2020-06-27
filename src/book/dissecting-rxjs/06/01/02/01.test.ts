@@ -16,11 +16,7 @@ describe('src/book/dissecting-rxjs/06/01/02/01.ts', () => {
   // 都要等到上游完结之后, 才会返回
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
-      const source$ = of(
-        { name: 'rxjs', year: 2011 },
-        { name: 'react', year: 2013 },
-        { name: 'redux', year: 2015 },
-      ).pipe(min((x, y) => x.year - y.year));
+      const source$ = of({ name: 'rxjs', year: 2011 }, { name: 'react', year: 2013 }, { name: 'redux', year: 2015 }).pipe(min((x, y) => x.year - y.year));
 
       expectObservable(source$.pipe(map((i) => i.name))).toBe('(a|)', {
         a: 'rxjs',

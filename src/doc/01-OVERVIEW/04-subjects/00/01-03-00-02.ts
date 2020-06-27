@@ -3,12 +3,10 @@
  *     Subject
  */
 
-import chalk from "chalk";
-import { from, Observable, Subject } from "rxjs";
+import chalk from 'chalk';
+import { from, Observable, Subject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 因为 subject 是一个 observer，因此一个 subject 对象可以作为 Observable.subscribe() 方法的参数

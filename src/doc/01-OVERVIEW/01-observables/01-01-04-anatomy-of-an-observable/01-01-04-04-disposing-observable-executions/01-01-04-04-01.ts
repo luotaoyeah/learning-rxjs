@@ -5,12 +5,10 @@
  *             Disposing Observable Execution
  */
 
-import chalk from "chalk";
-import { from, Observable, Subscription } from "rxjs";
+import chalk from 'chalk';
+import { from, Observable, Subscription } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * 因为 observable execution 可能是无限执行的，因此我们必须存在一个机制，

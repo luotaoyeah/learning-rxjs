@@ -4,12 +4,10 @@
  *         BehaviorSubject
  */
 
-import chalk from "chalk";
-import { BehaviorSubject } from "rxjs";
+import chalk from 'chalk';
+import { BehaviorSubject } from 'rxjs';
 
-console.log(
-  chalk.red("\n-------------------------------------------------- 01"),
-);
+console.log(chalk.red('\n-------------------------------------------------- 01'));
 {
   /*
    * BehaviorSubject 是一种特殊的 Subject，它的特点是：
