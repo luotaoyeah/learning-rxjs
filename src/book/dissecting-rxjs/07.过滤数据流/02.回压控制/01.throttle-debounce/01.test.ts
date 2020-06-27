@@ -2,7 +2,7 @@ import { TestScheduler } from 'rxjs/testing';
 import { interval } from 'rxjs';
 import { take, throttleTime } from 'rxjs/operators';
 
-describe('src/book/dissecting-rxjs/07.过滤数据流/02.回压控制/01.throttle-debounce/01.ts', () => {
+describe('src/book/dissecting-rxjs/07.过滤数据流/02.回压控制/01.throttle-debounce/01.test.ts', () => {
   let scheduler: TestScheduler;
 
   beforeEach(() => {

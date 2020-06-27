@@ -11,7 +11,6 @@ describe('src/book/dissecting-rxjs/07/02/01/04.ts', () => {
     });
   });
 
-  //
   // debounce() 使用一个 duration$ 来计时
   it('should work', () => {
     scheduler.run(({ expectObservable }) => {
