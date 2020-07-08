@@ -38,7 +38,24 @@ describe('src/book/dissecting-rxjs/07/02/04/01.ts', () => {
   // distinct() 默认使用 === 比较, 也可以通过参数指定如何进行比较
   it('should work 02', () => {
     scheduler.run(({ expectObservable }) => {
-      const source$ = of({ k: 0, v: 'A' }, { k: 1, v: 'B' }, { k: 1, v: 'C' }, { k: 2, v: 'D' });
+      const source$ = of(
+        {
+          k: 0,
+          v: 'A',
+        },
+        {
+          k: 1,
+          v: 'B',
+        },
+        {
+          k: 1,
+          v: 'C',
+        },
+        {
+          k: 2,
+          v: 'D',
+        },
+      );
 
       expectObservable(
         source$.pipe<{ k: number; v: string }, string>(
