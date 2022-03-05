@@ -18,5 +18,7 @@
     "target": "ESNext",
     "typeRoots": ["node_modules/@types"]
   },
-  "exclude": ["webpack.config.ts"]
+  "exclude": [
+    "webpack.config.ts"
+  ]
 }
