@@ -1,0 +1,41 @@
+{
+    "name": "@luotao/learning-rxjs",
+    "version": "0.0.1",
+    "author": "luotao",
+    "scripts": {
+        "build:prod": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack --config webpack.production.ts",
+        "dev:node": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node ./dist/index.js",
+        "dev:node:debug": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" webpack && node %NODE_DEBUG_OPTION% ./dist/index.js",
+        "dev:ts-node": "ts-node ./src/index.ts",
+        "dev:ts-node:debug": "ts-node %NODE_OPTIONS% ./src/index.ts",
+        "test": "jest --coverage"
+    },
+    "dependencies": {
+        "chalk": "4.1.2",
+        "jest": "27.5.1",
+        "node-fetch": "2.6.7",
+        "rxjs": "6.6.7"
+    },
+    "devDependencies": {
+        "@types/jest": "27.4.1",
+        "@types/jquery": "3.5.7",
+        "@types/node-fetch": "2.5.12",
+        "clean-webpack-plugin": "4.0.0",
+        "cross-env": "7.0.3",
+        "prettier": "2.6.2",
+        "ts-jest": "27.1.4",
+        "ts-loader": "9.2.8",
+        "ts-node": "10.7.0",
+        "tsconfig-paths": "3.14.1",
+        "typescript": "4.6.3",
+        "webpack": "5.73.0",
+        "webpack-cli": "4.9.2",
+        "webpack-merge": "5.8.0"
+    },
+    "prettier": {
+        "printWidth": 160,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "tabWidth": 4
+    }
+}
