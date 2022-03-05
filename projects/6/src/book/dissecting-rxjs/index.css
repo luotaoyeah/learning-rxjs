@@ -1,0 +1,10 @@
+* {
+    font-family: SimSun, sans-serif;
+    font-size: 14px;
+}
+
+button {
+    border-radius: 3px;
+    padding: 6.5px 8px 6px;
+    cursor: pointer;
+}
