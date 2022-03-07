@@ -1,6 +1,6 @@
 import { generate, Observable } from 'rxjs';
 
-// generate() 类似 for 循环
+// generate(): 类似 for 循环
 
 /**
  * 使用 generate() 模拟实现 range().
