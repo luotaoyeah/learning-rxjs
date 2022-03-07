@@ -3,7 +3,7 @@ import { Observable, repeat } from 'rxjs';
 // repeat(): 重复订阅上游 n 次, 上游完结之后就会立即再次订阅.
 
 const source$ = new Observable((subscriber) => {
-    console.log('subscribe');
+    console.log('SUBSCRIBE');
 
     setTimeout(() => subscriber.next(1), 1000);
     setTimeout(() => subscriber.next(2), 2000);
@@ -12,7 +12,7 @@ const source$ = new Observable((subscriber) => {
 
     return {
         unsubscribe() {
-            console.log('unsubscribe');
+            console.log('UNSUBSCRIBE');
         },
     };
 });
@@ -22,6 +22,6 @@ source$.pipe(repeat(2)).subscribe({
         console.log(value);
     },
     complete: () => {
-        console.log('complete');
+        console.log('COMPLETE');
     },
 });
