@@ -5,6 +5,9 @@ import { log } from '../../util';
  * repeat(): 重复订阅上游 n 次, 上游完结之后就会立即再次订阅
  */
 describe('repeat', () => {
+    /**
+     * 上游完结之后, 立即再次订阅.
+     */
     it('01', (cb) => {
         const source$ = new Observable((subscriber) => {
             console.log('SUBSCRIBE');
@@ -33,7 +36,7 @@ describe('repeat', () => {
     });
 
     /**
-     * 默认是在上游完结之后立即订阅, 可以通过第二个参数 delay 设置延迟多少毫秒订阅
+     * 可以通过参数 delay 设置延迟多少毫秒再去订阅上游.
      */
     it('02', (cb) => {
         const source$ = new Observable((subscriber) => {
@@ -63,7 +66,7 @@ describe('repeat', () => {
     });
 
     /**
-     * delay 可以是一个函数, 返回一个 Observable, 记为 delay$,
+     * 参数 delay 可以是一个函数, 返回一个 Observable, 记为 delay$,
      * 当 delay$ 吐出第一个数据时, repeat 就去订阅上游, 并且退订 delay$.
      */
     it('03', (cb) => {
