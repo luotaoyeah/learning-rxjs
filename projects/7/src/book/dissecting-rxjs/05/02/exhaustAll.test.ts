@@ -1,10 +1,10 @@
-import { interval, map, switchAll, take } from 'rxjs';
+import { interval, map, exhaustAll, take } from 'rxjs';
 import { log } from '../../util';
 
-describe('switchAll', () => {
+describe('exhaustAll', () => {
     /**
-     * 始终切换到最新的 inner Observable.
-     * 即只要有新的 inner Observable 吐出, 就退订当前的 inner Observable, 并订阅这个最新的 inner Observable.
+     * 当前的 inner Observable 完结之后, 才会去考虑新的 inner Observable.
+     * 当前的 inner Observable 完结之前产生的新的 inner Observable, 会被丢弃.
      */
     it('01', (cb) => {
         const ho$ = interval(1000).pipe(
@@ -17,7 +17,7 @@ describe('switchAll', () => {
             ),
         );
 
-        ho$.pipe(switchAll()).subscribe({
+        ho$.pipe(exhaustAll()).subscribe({
             next: (value) => {
                 log(value);
             },
