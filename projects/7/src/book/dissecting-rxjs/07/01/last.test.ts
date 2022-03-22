@@ -1,13 +1,13 @@
-import { first, of } from 'rxjs';
+import { last, of } from 'rxjs';
 import { log } from '../../util';
 
-describe('first', () => {
+describe('last', () => {
     /**
-     * 可以不传断言参数, 直接吐出上游的第一个数据.
+     * last() 跟 first() 相反.
      */
     it('01', (cb) => {
         of(1, 2, 3)
-            .pipe(first())
+            .pipe(last())
             .subscribe({
                 next: (value) => log(value),
                 complete: () => cb(),
@@ -19,7 +19,7 @@ describe('first', () => {
      */
     it('02', (cb) => {
         of(1, 2, 3)
-            .pipe(first((value) => value < 0))
+            .pipe(last((value) => value < 0))
             .subscribe({
                 next: (value) => log(value),
                 error: (err) => {
@@ -35,7 +35,7 @@ describe('first', () => {
      */
     it('03', (cb) => {
         of(1, 2, 3)
-            .pipe(first((value) => value < 0, -1))
+            .pipe(last((value) => value < 0, -1))
             .subscribe({
                 next: (value) => log(value),
                 complete: () => cb(),
