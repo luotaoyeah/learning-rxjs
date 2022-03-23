@@ -1,18 +1,16 @@
-import { concat, count, skip, startWith, tap, timer } from 'rxjs';
+import { interval, skip, startWith, takeUntil, tap, timer } from 'rxjs';
 import { log } from '../../util';
 
-describe('count', () => {
+describe('takeUntil', () => {
     it('01', (cb) => {
-        const source$ = concat(timer(1000), timer(1000));
-
-        source$
+        interval(2000)
             .pipe(
                 startWith('SUBSCRIBE'),
                 tap((value) => value === 'SUBSCRIBE' && log(value)),
                 skip(1),
 
-                count(),
-                tap((value) => log('count():' + value)),
+                takeUntil(timer(3000)),
+                tap((value) => log('takeUntil():' + value)),
             )
             .subscribe({
                 complete: () => {
