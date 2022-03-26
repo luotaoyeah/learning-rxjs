@@ -3,10 +3,10 @@ import { log, logSubscribe } from '../../util';
 
 describe('auditTime', () => {
     /**
-     * auditTime 跟 throttleTime( { leading: false, trailing: false } ) 的区别:
+     * auditTime 跟 throttleTime( { leading: true, trailing: false } ) 的区别:
      *   1. auditTime 不支持 leading/trailing 配置
      *   2. throttleTime 是: 接收数据, 吐出数据, 然后计时;
-     *      auditTime    是: 接收数据, 开始计时, 计时接收时吐出该时间周期中最后一个数据.
+     *      auditTime    是: 接收数据, 开始计时, 计时接收时吐出该周期内最后一个数据.
      *
      * 由于 auditTime 不支持 leading/trailing 配置, 因此吐出数据时不会触发新的计时周期.
      */
