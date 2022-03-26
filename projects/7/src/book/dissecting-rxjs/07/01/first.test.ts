@@ -19,7 +19,7 @@ describe('first', () => {
      */
     it('02', (cb) => {
         of(1, 2, 3)
-            .pipe(first((value) => value < 0))
+            .pipe(first((value, index, source) => value < 0))
             .subscribe({
                 next: (value) => log(value),
                 error: (err) => {
@@ -31,7 +31,7 @@ describe('first', () => {
     });
 
     /**
-     * 可以指定默认值, 在没有满足条件的数据时使用.
+     * 可以指定默认值, 在没有满足条件的数据时使用默认值.
      */
     it('03', (cb) => {
         of(1, 2, 3)
