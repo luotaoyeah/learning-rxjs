@@ -2,6 +2,9 @@ import { every, interval, of, tap } from 'rxjs';
 import { log } from '../../util';
 
 describe('every', () => {
+    /**
+     * 是否每个数据都满足条件.
+     */
     it('01', (cb) => {
         of(3, 1, 4, 1, 5, 9)
             .pipe(

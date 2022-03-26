@@ -7,7 +7,7 @@ describe('skipUntil', () => {
             .pipe(
                 logSubscribe(),
                 skipUntil(timer(3000)),
-                tap((value) => log(`skipUntil(): ${value}`)),
+                tap((value) => log(`skipUntil: ${value}`)),
             )
             .subscribe({
                 complete: () => {

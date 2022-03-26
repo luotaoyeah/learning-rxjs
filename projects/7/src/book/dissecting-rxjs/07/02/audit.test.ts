@@ -8,7 +8,7 @@ describe('audit', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 audit((value) => timer(3000)),
-                tap((value) => log(`audit(): ${value}`)),
+                tap((value) => log(`audit: ${value}`)),
             )
             .subscribe({
                 complete: () => {

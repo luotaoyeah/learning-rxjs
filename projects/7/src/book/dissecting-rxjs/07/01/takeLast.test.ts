@@ -6,9 +6,9 @@ describe('takeLast', () => {
         interval(1000)
             .pipe(
                 take(5),
-                tap((value) => log('take():' + value)),
+                tap((value) => log('take:' + value)),
                 takeLast(3),
-                tap((value) => log('takeLast():' + value)),
+                tap((value) => log('takeLast:' + value)),
             )
             .subscribe({ complete: () => cb() });
     });

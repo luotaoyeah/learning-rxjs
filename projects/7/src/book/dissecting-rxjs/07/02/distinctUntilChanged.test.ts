@@ -11,7 +11,7 @@ describe('distinctUntilChanged', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinctUntilChanged(),
-                tap((value) => log(`distinctUntilChanged(): ${value}`)),
+                tap((value) => log(`distinctUntilChanged: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -34,7 +34,7 @@ describe('distinctUntilChanged', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinctUntilChanged((x, y) => x === y),
-                tap((value) => log(`distinctUntilChanged(): ${value}`)),
+                tap((value) => log(`distinctUntilChanged: ${value}`)),
             )
             .subscribe({
                 complete: () => {

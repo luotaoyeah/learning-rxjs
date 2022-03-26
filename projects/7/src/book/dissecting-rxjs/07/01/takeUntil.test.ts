@@ -7,7 +7,7 @@ describe('takeUntil', () => {
             .pipe(
                 logSubscribe(),
                 takeUntil(timer(3000)),
-                tap((value) => log('takeUntil():' + value)),
+                tap((value) => log('takeUntil:' + value)),
             )
             .subscribe({
                 complete: () => {

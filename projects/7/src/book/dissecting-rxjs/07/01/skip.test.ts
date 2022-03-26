@@ -7,7 +7,7 @@ describe('skip', () => {
             .pipe(
                 logSubscribe(),
                 skip(3),
-                tap((value) => log(`skip(): ${value}`)),
+                tap((value) => log(`skip: ${value}`)),
             )
             .subscribe({
                 complete: () => {

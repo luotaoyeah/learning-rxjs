@@ -11,7 +11,7 @@ describe('sampleTime', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 sampleTime(3000),
-                tap((value) => log(`sampleTime(): ${value}`)),
+                tap((value) => log(`sampleTime: ${value}`)),
             )
             .subscribe({
                 complete: () => {

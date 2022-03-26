@@ -11,7 +11,7 @@ describe('ignoreElements', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 ignoreElements(),
-                tap((value) => log(`ignoreElements(): ${value}`)),
+                tap((value) => log(`ignoreElements: ${value}`)),
             )
             .subscribe({
                 complete: () => {

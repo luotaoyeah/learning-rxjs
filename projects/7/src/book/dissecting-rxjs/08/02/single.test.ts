@@ -1,13 +1,14 @@
-import { interval, skipWhile, tap } from 'rxjs';
+import { map, of, tap } from 'rxjs';
 import { log, logSubscribe } from '../../util';
 
-describe('skipWhile', () => {
+describe('map', () => {
     it('01', (cb) => {
-        interval(1000)
+        of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                skipWhile((value) => value < 3),
-                tap((value) => log(`skipWhile: ${value}`)),
+                tap((value) => log(`上游: ${value}`)),
+                map((value, index) => value ** 2),
+                tap((value) => log(`map: ${value}`)),
             )
             .subscribe({
                 complete: () => {

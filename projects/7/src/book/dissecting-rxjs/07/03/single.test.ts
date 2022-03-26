@@ -12,7 +12,7 @@ describe('single', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 single((value) => value % 2 === 9),
-                tap((value) => log(`single(): ${value}`)),
+                tap((value) => log(`single: ${value}`)),
             )
             .subscribe({
                 complete: () => {

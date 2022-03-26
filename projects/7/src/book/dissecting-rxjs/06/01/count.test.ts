@@ -12,7 +12,7 @@ describe('count', () => {
                 skip(1),
 
                 count(),
-                tap((value) => log('count():' + value)),
+                tap((value) => log('count:' + value)),
             )
             .subscribe({
                 complete: () => {

@@ -15,7 +15,7 @@ describe('throttleTime', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 throttleTime(3000),
-                tap((value) => log(`throttleTime(): ${value}`)),
+                tap((value) => log(`throttleTime: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -46,7 +46,7 @@ describe('throttleTime', () => {
                     leading: false,
                     trailing: true,
                 }),
-                tap((value) => log(`throttleTime(): ${value}`)),
+                tap((value) => log(`throttleTime: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -79,7 +79,7 @@ describe('throttleTime', () => {
                     leading: true,
                     trailing: true,
                 }),
-                tap((value) => log(`throttleTime(): ${value}`)),
+                tap((value) => log(`throttleTime: ${value}`)),
             )
             .subscribe({
                 complete: () => {

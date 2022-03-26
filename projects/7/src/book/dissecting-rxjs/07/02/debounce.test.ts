@@ -21,7 +21,7 @@ describe('debounce', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 debounce((value) => timer(2000)),
-                tap((value) => log(`debounce(): ${value}`)),
+                tap((value) => log(`debounce: ${value}`)),
             )
             .subscribe({
                 complete: () => {

@@ -9,7 +9,7 @@ describe('takeWhile', () => {
         interval(1000)
             .pipe(
                 takeWhile((value) => value < 3),
-                tap((value) => log('takeWhile():' + value)),
+                tap((value) => log('takeWhile:' + value)),
             )
             .subscribe({ complete: () => cb() });
     });
@@ -21,7 +21,7 @@ describe('takeWhile', () => {
         interval(1000)
             .pipe(
                 takeWhile((value) => value < 3, true),
-                tap((value) => log('takeWhile():' + value)),
+                tap((value) => log('takeWhile:' + value)),
             )
             .subscribe({ complete: () => cb() });
     });

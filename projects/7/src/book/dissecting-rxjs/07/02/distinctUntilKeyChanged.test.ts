@@ -11,7 +11,7 @@ describe('distinctUntilKeyChanged', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinctUntilKeyChanged('length'),
-                tap((value) => log(`distinctUntilKeyChanged(): ${value}`)),
+                tap((value) => log(`distinctUntilKeyChanged: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -34,7 +34,7 @@ describe('distinctUntilKeyChanged', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${JSON.stringify(value)}`)),
                 distinctUntilKeyChanged('name', (x, y) => x.substring(0, 3) === y.substring(0, 3)),
-                tap((value) => log(`distinctUntilKeyChanged(): ${JSON.stringify(value)}`)),
+                tap((value) => log(`distinctUntilKeyChanged: ${JSON.stringify(value)}`)),
             )
             .subscribe({
                 complete: () => {

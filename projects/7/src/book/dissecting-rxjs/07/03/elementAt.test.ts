@@ -11,7 +11,7 @@ describe('elementAt', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 elementAt(1),
-                tap((value) => log(`elementAt(): ${value}`)),
+                tap((value) => log(`elementAt: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -34,7 +34,7 @@ describe('elementAt', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 elementAt(4),
-                tap((value) => log(`elementAt(): ${value}`)),
+                tap((value) => log(`elementAt: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -57,7 +57,7 @@ describe('elementAt', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 elementAt(4, 6),
-                tap((value) => log(`elementAt(): ${value}`)),
+                tap((value) => log(`elementAt: ${value}`)),
             )
             .subscribe({
                 complete: () => {

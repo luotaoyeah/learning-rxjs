@@ -8,7 +8,7 @@ describe('sample', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 sample(interval(3000)),
-                tap((value) => log(`sample(): ${value}`)),
+                tap((value) => log(`sample: ${value}`)),
             )
             .subscribe({
                 complete: () => {

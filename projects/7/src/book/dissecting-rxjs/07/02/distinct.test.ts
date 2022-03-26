@@ -8,7 +8,7 @@ describe('distinct', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinct(),
-                tap((value) => log(`distinct(): ${value}`)),
+                tap((value) => log(`distinct: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -31,7 +31,7 @@ describe('distinct', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinct((value) => value),
-                tap((value) => log(`distinct(): ${value}`)),
+                tap((value) => log(`distinct: ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -54,7 +54,7 @@ describe('distinct', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 distinct(undefined, timer(1000)),
-                tap((value) => log(`distinct(): ${value}`)),
+                tap((value) => log(`distinct: ${value}`)),
             )
             .subscribe({
                 complete: () => {

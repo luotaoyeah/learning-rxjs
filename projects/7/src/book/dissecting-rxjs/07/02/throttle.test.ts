@@ -8,7 +8,7 @@ describe('throttle', () => {
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
                 throttle((value) => timer(3000)),
-                tap((value) => log(`throttle(): ${value}`)),
+                tap((value) => log(`throttle: ${value}`)),
             )
             .subscribe({
                 complete: () => {
