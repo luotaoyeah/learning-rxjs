@@ -1,4 +1,4 @@
-import { catchError, interval, of, Subject, take, tap, config } from 'rxjs';
+import { interval, map, Subject, take, tap } from 'rxjs';
 import { log, logSubscribe } from '../../util';
 
 describe('Subject', () => {
@@ -76,5 +76,37 @@ describe('Subject', () => {
         setTimeout(() => {
             subject.unsubscribe();
         }, 3000);
+    });
+
+    /**
+     * Subject 作为 Observer 可以订阅多个 Observable,
+     * 但是只要其中一个 Observable 发生了 complete/error, 它就会调用 Subject 的 complete/error, Subject 又会去调用它所有的订阅者的 complete/error.
+     */
+    it('04', (cb) => {
+        const subject = new Subject<string>();
+
+        const source01$ = interval(1000).pipe(
+            take(2),
+            map(() => 'A'),
+        );
+        source01$.subscribe(subject);
+
+        const source02$ = interval(1000).pipe(
+            take(2),
+            map(() => 'B'),
+        );
+        source02$.subscribe(subject);
+
+        subject.subscribe({
+            next: (value) => log(`--| ${value}`),
+            complete: () => {
+                log('COMPLETE');
+                cb();
+            },
+            error: (e) => {
+                log(`ERROR | ${e.message}`);
+                cb();
+            },
+        });
     });
 });
