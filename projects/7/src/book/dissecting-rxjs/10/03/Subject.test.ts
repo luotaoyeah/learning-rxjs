@@ -1,4 +1,4 @@
-import { interval, Subject, take, tap } from 'rxjs';
+import { catchError, interval, of, Subject, take, tap, config } from 'rxjs';
 import { log, logSubscribe } from '../../util';
 
 describe('Subject', () => {
@@ -48,7 +48,33 @@ describe('Subject', () => {
         subject.pipe(tap((value) => log(`--| ${value}`))).subscribe();
 
         setTimeout(() => {
-            subject.pipe(tap((value) => log(`----------| ${value}`))).subscribe();
+            subject.pipe(tap((value) => log(`----------| ${value}`))).subscribe({ complete: () => cb() });
         }, 5000);
+    });
+
+    /**
+     * 调用 Subject.unsubscribe() 之后, 下游将不会再收到 next/complete/error 通知.
+     */
+    it('03', (cb) => {
+        const subject = new Subject<number>();
+
+        const source$ = interval(1000).pipe(take(10));
+        source$.subscribe(subject);
+
+        subject.subscribe({
+            next: (value) => log(`--| ${value}`),
+            complete: () => {
+                log('COMPLETE');
+                cb();
+            },
+            error: (e) => {
+                log(`ERROR | ${e.message}`);
+                cb();
+            },
+        });
+
+        setTimeout(() => {
+            subject.unsubscribe();
+        }, 3000);
     });
 });
