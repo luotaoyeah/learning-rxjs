@@ -14,7 +14,7 @@ describe('catchError', () => {
 
     /**
      * 第一个参数 e 表示错误对象,
-     * 第二个参数 caught$ 表示当前的数据流(即上游的 Observable + catchError),
+     * 第二个参数 caught$ 表示当前的数据流(从最上游一直到 catchError 为止),
      */
     it('01', (cb) => {
         source$
