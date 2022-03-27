@@ -10,7 +10,7 @@ describe('single', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 single((value) => value % 2 === 9),
                 tap((value) => log(`single: ${value}`)),
             )
@@ -20,7 +20,7 @@ describe('single', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

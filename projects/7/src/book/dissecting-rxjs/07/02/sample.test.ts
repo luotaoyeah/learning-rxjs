@@ -6,7 +6,7 @@ describe('sample', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 sample(interval(3000)),
                 tap((value) => log(`sample: ${value}`)),
             )
@@ -16,7 +16,7 @@ describe('sample', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

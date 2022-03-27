@@ -9,7 +9,7 @@ describe('elementAt', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 elementAt(1),
                 tap((value) => log(`elementAt: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('elementAt', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -32,7 +32,7 @@ describe('elementAt', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 elementAt(4),
                 tap((value) => log(`elementAt: ${value}`)),
             )
@@ -42,7 +42,7 @@ describe('elementAt', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -55,7 +55,7 @@ describe('elementAt', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 elementAt(4, 6),
                 tap((value) => log(`elementAt: ${value}`)),
             )
@@ -65,7 +65,7 @@ describe('elementAt', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

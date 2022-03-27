@@ -9,7 +9,7 @@ describe('distinctUntilChanged', () => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinctUntilChanged(),
                 tap((value) => log(`distinctUntilChanged: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('distinctUntilChanged', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -32,7 +32,7 @@ describe('distinctUntilChanged', () => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinctUntilChanged((x, y) => x === y),
                 tap((value) => log(`distinctUntilChanged: ${value}`)),
             )
@@ -42,7 +42,7 @@ describe('distinctUntilChanged', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

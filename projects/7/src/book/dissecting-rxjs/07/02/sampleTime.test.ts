@@ -9,7 +9,7 @@ describe('sampleTime', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 sampleTime(3000),
                 tap((value) => log(`sampleTime: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('sampleTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

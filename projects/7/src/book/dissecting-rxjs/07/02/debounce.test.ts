@@ -19,7 +19,7 @@ describe('debounce', () => {
         )
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 debounce((value) => timer(2000)),
                 tap((value) => log(`debounce: ${value}`)),
             )
@@ -29,7 +29,7 @@ describe('debounce', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

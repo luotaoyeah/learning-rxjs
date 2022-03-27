@@ -11,7 +11,7 @@ describe('groupBy', () => {
         interval(1000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 groupBy(key, { element: (value) => `${key(value)}: ${value}` }),
                 mergeAll(),
                 tap((value) => log(`groupBy: ${value}`)),
@@ -22,7 +22,7 @@ describe('groupBy', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

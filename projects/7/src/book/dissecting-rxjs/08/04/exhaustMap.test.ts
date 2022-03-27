@@ -10,7 +10,7 @@ describe('exhaustMap', () => {
             .pipe(
                 take(2),
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 exhaustMap((value) => interval(1000).pipe(take(3))),
                 tap((value) => log(`exhaustMap: ${value}`)),
             )
@@ -20,7 +20,7 @@ describe('exhaustMap', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

@@ -6,7 +6,7 @@ describe('distinct', () => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinct(),
                 tap((value) => log(`distinct: ${value}`)),
             )
@@ -16,7 +16,7 @@ describe('distinct', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -29,7 +29,7 @@ describe('distinct', () => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinct((value) => value),
                 tap((value) => log(`distinct: ${value}`)),
             )
@@ -39,7 +39,7 @@ describe('distinct', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -52,7 +52,7 @@ describe('distinct', () => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinct(undefined, timer(1000)),
                 tap((value) => log(`distinct: ${value}`)),
             )
@@ -62,7 +62,7 @@ describe('distinct', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

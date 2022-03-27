@@ -9,7 +9,7 @@ describe('ignoreElements', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 ignoreElements(),
                 tap((value) => log(`ignoreElements: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('ignoreElements', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

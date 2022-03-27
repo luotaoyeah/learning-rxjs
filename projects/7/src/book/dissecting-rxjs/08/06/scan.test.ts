@@ -11,9 +11,9 @@ describe('scan', () => {
         interval(1000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 scan((acc, value) => acc + value),
-                tap((value) => log(`scan: ${value}`)),
+                tap((value) => log(`----------| ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -21,7 +21,7 @@ describe('scan', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

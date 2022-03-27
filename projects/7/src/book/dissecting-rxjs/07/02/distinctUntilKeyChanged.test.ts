@@ -9,7 +9,7 @@ describe('distinctUntilKeyChanged', () => {
         of('1', 'a', '22', 'bb')
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 distinctUntilKeyChanged('length'),
                 tap((value) => log(`distinctUntilKeyChanged: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('distinctUntilKeyChanged', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -42,7 +42,7 @@ describe('distinctUntilKeyChanged', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

@@ -9,7 +9,7 @@ describe('concatMap', () => {
         range(1, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 concatMap((value) => interval(1000).pipe(take(3))),
                 tap((value) => log(`concatMap: ${value}`)),
             )
@@ -19,7 +19,7 @@ describe('concatMap', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

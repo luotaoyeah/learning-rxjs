@@ -12,7 +12,7 @@ describe('partition', () => {
         merge(even$.pipe(map((value) => `偶数: ${value}`)), odd$.pipe(map((value) => `奇数: ${value}`)))
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
             )
             .subscribe({
                 complete: () => {
@@ -20,7 +20,7 @@ describe('partition', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

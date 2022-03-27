@@ -10,7 +10,7 @@ describe('mergeMap', () => {
             .pipe(
                 take(2),
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 mergeMap((value) => interval(1000).pipe(take(3))),
                 tap((value) => log(`mergeMap: ${value}`)),
             )
@@ -20,7 +20,7 @@ describe('mergeMap', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

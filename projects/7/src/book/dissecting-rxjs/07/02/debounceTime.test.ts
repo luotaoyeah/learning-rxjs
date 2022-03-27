@@ -24,7 +24,7 @@ describe('debounceTime', () => {
         )
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 debounceTime(2000),
                 tap((value) => log(`debounceTime: ${value}`)),
             )
@@ -34,7 +34,7 @@ describe('debounceTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

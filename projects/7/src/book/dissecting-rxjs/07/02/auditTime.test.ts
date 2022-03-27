@@ -14,7 +14,7 @@ describe('auditTime', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 auditTime(3000),
                 tap((value) => log(`auditTime: ${value}`)),
             )
@@ -24,7 +24,7 @@ describe('auditTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

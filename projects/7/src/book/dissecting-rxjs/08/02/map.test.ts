@@ -6,7 +6,7 @@ describe('map', () => {
         of(1, 2, 3)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 map((value, index) => value ** 2),
                 tap((value) => log(`map: ${value}`)),
             )
@@ -16,7 +16,7 @@ describe('map', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });

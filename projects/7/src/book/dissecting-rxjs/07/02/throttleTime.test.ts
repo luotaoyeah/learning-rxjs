@@ -13,7 +13,7 @@ describe('throttleTime', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 throttleTime(3000),
                 tap((value) => log(`throttleTime: ${value}`)),
             )
@@ -23,7 +23,7 @@ describe('throttleTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -41,7 +41,7 @@ describe('throttleTime', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 throttleTime(3000, undefined, {
                     leading: false,
                     trailing: true,
@@ -54,7 +54,7 @@ describe('throttleTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
@@ -74,7 +74,7 @@ describe('throttleTime', () => {
         interval(2000)
             .pipe(
                 logSubscribe(),
-                tap((value) => log(`上游: ${value}`)),
+                tap((value) => log(`--| ${value}`)),
                 throttleTime(3000, undefined, {
                     leading: true,
                     trailing: true,
@@ -87,7 +87,7 @@ describe('throttleTime', () => {
                     cb();
                 },
                 error: (e) => {
-                    log(e.message);
+                    log(`ERROR | ${e.message}`);
                     cb();
                 },
             });
