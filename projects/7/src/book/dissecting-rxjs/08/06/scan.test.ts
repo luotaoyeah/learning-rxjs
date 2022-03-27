@@ -1,20 +1,19 @@
-import { groupBy, interval, mergeAll, tap } from 'rxjs';
+import { interval, scan, tap } from 'rxjs';
 import { log, logSubscribe } from '../../util';
 
-describe('groupBy', () => {
+describe('scan', () => {
     /**
-     * 对上游数据分组, 分别放入不同的 GroupedObservable.
-     * 第一个参数 key 表示分组的 key.
+     * scan 和 reduce 的区别:
+     *   reduce 在上游完结时规约一次,
+     *   scan   对上游每一个数据都规约
      */
     it('01', (cb) => {
-        const key = (value: number) => (value % 2 === 0 ? '偶数' : '奇数');
         interval(1000)
             .pipe(
                 logSubscribe(),
                 tap((value) => log(`上游: ${value}`)),
-                groupBy(key, { element: (value) => `${key(value)}: ${value}` }),
-                mergeAll(),
-                tap((value) => log(`groupBy: ${value}`)),
+                scan((acc, value) => acc + value),
+                tap((value) => log(`scan: ${value}`)),
             )
             .subscribe({
                 complete: () => {

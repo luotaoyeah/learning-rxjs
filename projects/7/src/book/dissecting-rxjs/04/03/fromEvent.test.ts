@@ -1,10 +1,10 @@
 import { fromEvent, take } from 'rxjs';
 import { EventEmitter } from 'events';
 
-/**
- * fromEvent() 将 DOM 事件或者 Node.JS 中的事件转换为 Observable.
- */
 describe('fromEvent', () => {
+    /**
+     * fromEvent() 将 DOM 事件或者 Node.JS 中的事件转换为 Observable.
+     */
     it('01', (cb) => {
         const eventEmitter = new EventEmitter();
 
