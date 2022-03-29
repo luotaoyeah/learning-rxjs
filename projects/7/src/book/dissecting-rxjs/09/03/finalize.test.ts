@@ -13,8 +13,7 @@ describe('finalize', () => {
     );
 
     /**
-     * 当上游 complete 或者 error 或者被 unsubscribe 时, finalize 中的回调函数都会执行.
-     * 注意: finalize 回调是在 complete 回调或者 error 回调执行之后才会执行.
+     * 当上游 complete/error 或者被 unsubscribe 时, finalize 中的回调函数都会执行.
      */
     it('01', (cb) => {
         source$

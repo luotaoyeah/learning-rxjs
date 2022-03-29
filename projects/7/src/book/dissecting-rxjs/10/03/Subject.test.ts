@@ -33,13 +33,13 @@ describe('Subject', () => {
     });
 
     /**
-     * 让 Cold Observable 作为 Subject 的上游, 经过 Subject 之后就变成了一个 Hot Observable. 从而实现多播.
+     * 让 Cold Observable 作为 Subject 的上游, 经过 Subject 之后就变成了一个 Hot Observable, 从而实现多播.
      * 多播指的是: 多个 Observer 订阅了同一个 Observable, 这个 Observable 必须是一个 Hot Observable (比如 Subject).
      */
     it('02', (cb) => {
         const subject = new Subject<number>();
 
-        // source$ 是要给 Cold Observable
+        // source$ 是一个 Cold Observable
         const source$ = interval(1000).pipe(take(10));
         // Subject 是一个 Observer (因为 Subject 拥有 next/complete/error 三个方法),
         // 所以直接将一个 Subject 作为参数传给 subscribe() 方法
@@ -79,7 +79,7 @@ describe('Subject', () => {
     });
 
     /**
-     * Subject 作为 Observer 可以订阅多个 Observable,
+     * Subject 作为 Observer 可以订阅多个 Observable (即可以有多个上游),
      * 但是只要其中一个 Observable 发生了 complete/error, 它就会调用 Subject 的 complete/error, Subject 又会去调用它所有的订阅者的 complete/error.
      */
     it('04', (cb) => {
