@@ -1,4 +1,4 @@
-import { ConnectableObservable, interval, multicast, Subject, tap } from 'rxjs';
+import { ConnectableObservable, interval, multicast, refCount, Subject, tap } from 'rxjs';
 import { log, logSubscribe } from '../../util';
 
 describe('multicast', () => {
@@ -44,6 +44,7 @@ describe('multicast', () => {
                 logSubscribe(),
                 tap((value) => log(`-----| ${value}`)),
                 multicast<string>(new Subject()),
+                refCount(),
             ) as ConnectableObservable<string>
         ).refCount();
 
