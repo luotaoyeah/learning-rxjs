@@ -18,6 +18,8 @@ describe('connectable', () => {
 
         setTimeout(() => cb(), 10000);
 
+        // connect() 方法的作用: 由于 connectable() 返回的是一个热流, 我们需要先订阅这个热流, 再调用 connect() 方法让热流去订阅上游的冷流,
+        // 这样就避免了热流导致的数据丢失, 否则有可能我们还没来得及订阅这个热流, 这个热流的数据就吐完了
         const subscription = connectableObservable.connect();
     });
 });

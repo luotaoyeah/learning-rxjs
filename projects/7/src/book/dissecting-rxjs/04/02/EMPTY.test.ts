@@ -1,20 +1,30 @@
-import { EMPTY } from 'rxjs';
+import { EMPTY, tap } from 'rxjs';
+import { log } from '../../util';
 
-/**
- * EMPTY: 产生一个直接 complete 的数据流
- */
 describe('EMPTY', () => {
+    /**
+     * EMPTY: 产生一个直接 complete 的数据流
+     */
     it('01', (cb) => {
-        EMPTY.subscribe({
+        EMPTY.pipe(
+            tap(() => {
+                // 不会经过管道
+                log('tap');
+            }),
+        ).subscribe({
             next: (value) => {
                 // 永远不会 next
-            },
-            complete: () => {
-                console.log('COMPLETE');
+                log('NEXT');
                 cb();
             },
-            error: () => {
+            complete: () => {
+                log('COMPLETE');
+                cb();
+            },
+            error: (e) => {
                 // 永远不会 error
+                log(`ERROR | ${e.message}`);
+                cb();
             },
         });
     });
