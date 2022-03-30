@@ -1,5 +1,5 @@
 import { groupBy, interval, mergeAll, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('groupBy', () => {
     /**
@@ -10,8 +10,10 @@ describe('groupBy', () => {
         const key = (value: number) => (value % 2 === 0 ? '偶数' : '奇数');
         interval(1000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 groupBy(key, { element: (value) => `${key(value)}: ${value}` }),
                 mergeAll(),
                 tap((value) => log(`groupBy: ${value}`)),

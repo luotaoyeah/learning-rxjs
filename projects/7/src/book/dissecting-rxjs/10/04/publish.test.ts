@@ -1,5 +1,5 @@
 import { interval, publish, refCount, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('publish', () => {
     /**
@@ -9,8 +9,10 @@ describe('publish', () => {
         const cold$ = interval(1000);
 
         const observable = cold$.pipe(
-            logSubscribe(),
-            tap((value) => log(`-----| ${value}`)),
+            tap({
+                subscribe: () => log('SUBSCRIBE'),
+                next: (value) => log(`-----| ${value}`),
+            }),
             publish(),
             refCount(),
         );

@@ -1,5 +1,5 @@
 import { concatMap, interval, range, take, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('concatMap', () => {
     /**
@@ -8,8 +8,10 @@ describe('concatMap', () => {
     it('01', (cb) => {
         range(1, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 concatMap((value) => interval(1000).pipe(take(3))),
                 tap((value) => log(`concatMap: ${value}`)),
             )

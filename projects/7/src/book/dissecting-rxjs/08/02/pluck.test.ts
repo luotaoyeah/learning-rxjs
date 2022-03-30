@@ -1,5 +1,5 @@
 import { of, pluck, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('pluck', () => {
     /**
@@ -8,8 +8,10 @@ describe('pluck', () => {
     it('01', (cb) => {
         of({ x: { y: { z: 1 } } }, { x: { y: { z: 2 } } })
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`上游: ${JSON.stringify(value)}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${JSON.stringify(value)}`),
+                }),
                 pluck('x', 'y', 'z'),
                 tap((value) => log(`pluck: ${value}`)),
             )
@@ -31,8 +33,10 @@ describe('pluck', () => {
          */
         of(['a', 'b', 'c'])
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`上游: ${JSON.stringify(value)}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${JSON.stringify(value)}`),
+                }),
                 pluck(1),
                 tap((value) => log(`pluck: ${value}`)),
             )

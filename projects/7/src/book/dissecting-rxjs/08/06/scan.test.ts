@@ -1,5 +1,5 @@
 import { interval, scan, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('scan', () => {
     /**
@@ -10,8 +10,10 @@ describe('scan', () => {
     it('01', (cb) => {
         interval(1000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 scan((acc, value) => acc + value),
                 tap((value) => log(`----------| ${value}`)),
             )

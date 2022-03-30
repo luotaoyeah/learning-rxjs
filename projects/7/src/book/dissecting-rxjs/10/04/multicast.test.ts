@@ -1,5 +1,5 @@
 import { ConnectableObservable, interval, multicast, Subject, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('multicast', () => {
     /**
@@ -11,8 +11,10 @@ describe('multicast', () => {
         const cold$ = interval(1000);
 
         const observable = cold$.pipe(
-            logSubscribe(),
-            tap((value) => log(`-----| ${value}`)),
+            tap({
+                subscribe: () => log('SUBSCRIBE'),
+                next: (value) => log(`-----| ${value}`),
+            }),
             multicast(new Subject()),
         ) as ConnectableObservable<string>;
 
@@ -41,8 +43,10 @@ describe('multicast', () => {
 
         const observable = (
             cold$.pipe(
-                logSubscribe(),
-                tap((value) => log(`-----| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 multicast(new Subject()),
             ) as ConnectableObservable<string>
         ).refCount();

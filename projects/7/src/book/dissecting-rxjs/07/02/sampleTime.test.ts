@@ -1,5 +1,5 @@
 import { interval, sampleTime, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('sampleTime', () => {
     /**
@@ -8,8 +8,10 @@ describe('sampleTime', () => {
     it('01', (cb) => {
         interval(2000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 sampleTime(3000),
                 tap((value) => log(`sampleTime: ${value}`)),
             )

@@ -1,5 +1,5 @@
 import { interval, multicast, refCount, Subject, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('refCount', () => {
     /**
@@ -9,8 +9,10 @@ describe('refCount', () => {
         const cold$ = interval(1000);
 
         const observable = cold$.pipe(
-            logSubscribe(),
-            tap((value) => log(`-----| ${value}`)),
+            tap({
+                subscribe: () => log('SUBSCRIBE'),
+                next: (value) => log(`-----| ${value}`),
+            }),
             multicast<string>(new Subject()),
             refCount(),
         );

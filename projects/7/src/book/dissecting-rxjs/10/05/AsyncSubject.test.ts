@@ -1,5 +1,5 @@
 import { AsyncSubject, interval, share, take, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('AsyncSubject', () => {
     /**
@@ -10,8 +10,10 @@ describe('AsyncSubject', () => {
         const cold$ = interval(1000).pipe(take(3));
 
         const observable = cold$.pipe(
-            logSubscribe(),
-            tap((value) => log(`-----| ${value}`)),
+            tap({
+                subscribe: () => log('SUBSCRIBE'),
+                next: (value) => log(`-----| ${value}`),
+            }),
             share({
                 connector: () => new AsyncSubject(),
                 resetOnError: false,

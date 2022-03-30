@@ -1,4 +1,4 @@
-import { interval, map, exhaustAll, take } from 'rxjs';
+import { exhaustAll, interval, map, take } from 'rxjs';
 import { log } from '../../util';
 
 describe('exhaustAll', () => {

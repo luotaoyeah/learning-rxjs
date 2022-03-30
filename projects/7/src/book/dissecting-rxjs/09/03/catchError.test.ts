@@ -1,5 +1,5 @@
 import { catchError, interval, map, of, take, tap, throwError } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('catchError', () => {
     const source$ = interval(1000).pipe(
@@ -19,8 +19,10 @@ describe('catchError', () => {
     it('01', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
 
                 // 直接返回 caught$, 表示从头开始重试, 类似于 retry.
                 catchError((e, caught$) => caught$),
@@ -45,8 +47,10 @@ describe('catchError', () => {
     it('02', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 catchError((e, caught$) => {
                     log(`----------| catchError | ${e.message}`);
                     return of(8);
@@ -71,8 +75,10 @@ describe('catchError', () => {
     it('03', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 catchError((e, caught$) => {
                     log(`----------| catchError | ${e.message}`);
                     // throw e;
@@ -98,8 +104,10 @@ describe('catchError', () => {
     it('04', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 catchError((e, caught$) => {
                     log(`----------| catchError | ${e.message}`);
                     return throwError(() => new Error('不吉利的'));

@@ -1,4 +1,4 @@
-import { combineLatestAll, interval, map, take, zipAll } from 'rxjs';
+import { combineLatestAll, interval, map, take } from 'rxjs';
 import { log } from '../../util';
 
 describe('combineLatestAll', () => {

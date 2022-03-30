@@ -1,5 +1,5 @@
 import { distinctUntilKeyChanged, of, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('distinctUntilKeyChanged', () => {
     /**
@@ -8,8 +8,10 @@ describe('distinctUntilKeyChanged', () => {
     it('01', (cb) => {
         of('1', 'a', '22', 'bb')
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinctUntilKeyChanged('length'),
                 tap((value) => log(`distinctUntilKeyChanged: ${value}`)),
             )
@@ -31,8 +33,10 @@ describe('distinctUntilKeyChanged', () => {
     it('02', (cb) => {
         of({ age: 4, name: 'Foo1' }, { age: 7, name: 'Bar' }, { age: 5, name: 'Foo2' }, { age: 6, name: 'Foo3' })
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`上游: ${JSON.stringify(value)}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${JSON.stringify(value)}`),
+                }),
                 distinctUntilKeyChanged('name', (x, y) => x.substring(0, 3) === y.substring(0, 3)),
                 tap((value) => log(`distinctUntilKeyChanged: ${JSON.stringify(value)}`)),
             )

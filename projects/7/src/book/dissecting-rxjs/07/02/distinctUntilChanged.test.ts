@@ -1,5 +1,5 @@
 import { distinctUntilChanged, of, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('distinctUntilChanged', () => {
     /**
@@ -8,8 +8,10 @@ describe('distinctUntilChanged', () => {
     it('01', (cb) => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinctUntilChanged(),
                 tap((value) => log(`distinctUntilChanged: ${value}`)),
             )
@@ -31,8 +33,10 @@ describe('distinctUntilChanged', () => {
     it('02', (cb) => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinctUntilChanged((x, y) => x === y),
                 tap((value) => log(`distinctUntilChanged: ${value}`)),
             )

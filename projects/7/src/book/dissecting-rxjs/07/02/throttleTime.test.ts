@@ -1,5 +1,5 @@
 import { interval, tap, throttleTime } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('throttleTime', () => {
     /**
@@ -12,8 +12,10 @@ describe('throttleTime', () => {
     it('01', (cb) => {
         interval(2000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 throttleTime(3000),
                 tap((value) => log(`throttleTime: ${value}`)),
             )
@@ -40,8 +42,10 @@ describe('throttleTime', () => {
     it('02', (cb) => {
         interval(2000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 throttleTime(3000, undefined, {
                     leading: false,
                     trailing: true,
@@ -73,8 +77,10 @@ describe('throttleTime', () => {
     it('03', (cb) => {
         interval(2000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 throttleTime(3000, undefined, {
                     leading: true,
                     trailing: true,

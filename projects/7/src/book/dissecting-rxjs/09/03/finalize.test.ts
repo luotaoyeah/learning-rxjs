@@ -1,5 +1,5 @@
 import { catchError, finalize, interval, map, of, take, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('finalize', () => {
     const source$ = interval(1000).pipe(
@@ -18,8 +18,10 @@ describe('finalize', () => {
     it('01', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 catchError((e, caught$) => of(8)),
                 take(5),
                 tap((value) => log(`----------| ${value}`)),

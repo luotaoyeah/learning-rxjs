@@ -1,12 +1,14 @@
 import { interval, tap, throttle, timer } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('throttle', () => {
     it('01', (cb) => {
         interval(2000)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 throttle((value) => timer(3000)),
                 tap((value) => log(`throttle: ${value}`)),
             )

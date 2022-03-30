@@ -1,5 +1,5 @@
 import { interval, map, Subject, take, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('Subject', () => {
     /**
@@ -12,8 +12,10 @@ describe('Subject', () => {
 
         subject
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`----------| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
             )
             .subscribe({
                 complete: () => {

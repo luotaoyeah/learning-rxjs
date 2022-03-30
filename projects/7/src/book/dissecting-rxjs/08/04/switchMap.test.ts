@@ -1,5 +1,5 @@
 import { interval, switchMap, take, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('switchMap', () => {
     /**
@@ -9,8 +9,10 @@ describe('switchMap', () => {
         interval(1000)
             .pipe(
                 take(2),
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 switchMap((value) => interval(1000).pipe(take(3))),
                 tap((value) => log(`switchMap: ${value}`)),
             )

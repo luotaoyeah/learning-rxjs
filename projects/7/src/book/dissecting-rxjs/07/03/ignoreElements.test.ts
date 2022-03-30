@@ -1,5 +1,5 @@
-import { ignoreElements, interval, of, tap, throttle, timer } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { ignoreElements, of, tap } from 'rxjs';
+import { log } from '../../util';
 
 describe('ignoreElements', () => {
     /**
@@ -8,8 +8,10 @@ describe('ignoreElements', () => {
     it('01', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 ignoreElements(),
                 tap((value) => log(`ignoreElements: ${value}`)),
             )

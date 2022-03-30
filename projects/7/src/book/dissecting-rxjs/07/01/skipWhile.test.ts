@@ -1,11 +1,14 @@
 import { interval, skipWhile, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('skipWhile', () => {
     it('01', (cb) => {
         interval(1000)
             .pipe(
-                logSubscribe(),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 skipWhile((value) => value < 3),
                 tap((value) => log(`skipWhile: ${value}`)),
             )

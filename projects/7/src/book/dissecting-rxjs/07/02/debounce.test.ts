@@ -1,5 +1,5 @@
 import { concat, debounce, interval, map, take, tap, timer } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('debounce', () => {
     it('01', (cb) => {
@@ -18,8 +18,10 @@ describe('debounce', () => {
             ),
         )
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 debounce((value) => timer(2000)),
                 tap((value) => log(`debounce: ${value}`)),
             )

@@ -1,5 +1,5 @@
 import { elementAt, of, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('elementAt', () => {
     /**
@@ -8,8 +8,10 @@ describe('elementAt', () => {
     it('01', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 elementAt(1),
                 tap((value) => log(`elementAt: ${value}`)),
             )
@@ -31,8 +33,10 @@ describe('elementAt', () => {
     it('02', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 elementAt(4),
                 tap((value) => log(`elementAt: ${value}`)),
             )
@@ -54,8 +58,10 @@ describe('elementAt', () => {
     it('03', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 elementAt(4, 6),
                 tap((value) => log(`elementAt: ${value}`)),
             )

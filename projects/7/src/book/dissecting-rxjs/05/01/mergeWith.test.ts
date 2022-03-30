@@ -1,4 +1,4 @@
-import { mergeWith, interval, map, take, timer } from 'rxjs';
+import { map, mergeWith, take, timer } from 'rxjs';
 import { log } from '../../util';
 
 describe('mergeWith', () => {

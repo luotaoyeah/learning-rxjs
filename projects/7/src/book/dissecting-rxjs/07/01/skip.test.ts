@@ -1,11 +1,14 @@
 import { interval, skip, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('skip', () => {
     it('01', (cb) => {
         interval(1000)
             .pipe(
-                logSubscribe(),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 skip(3),
                 tap((value) => log(`skip: ${value}`)),
             )

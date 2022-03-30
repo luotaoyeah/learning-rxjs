@@ -1,5 +1,5 @@
 import { catchError, interval, map, of, retry, take, tap, timer } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('retry', () => {
     const source$ = interval(1000).pipe(
@@ -15,8 +15,10 @@ describe('retry', () => {
     it('01', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 retry(2),
                 catchError((e, caught$) => of(8)),
                 take(20),
@@ -40,8 +42,10 @@ describe('retry', () => {
     it('02', (cb) => {
         source$
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 retry({
                     count: 1,
                     delay: () => timer(1000),

@@ -1,12 +1,14 @@
 import { map, of, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('map', () => {
     it('01', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 map((value, index) => value ** 2),
                 tap((value) => log(`map: ${value}`)),
             )

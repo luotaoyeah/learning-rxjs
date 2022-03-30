@@ -1,12 +1,14 @@
 import { distinct, of, tap, timer } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('distinct', () => {
     it('01', (cb) => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinct(),
                 tap((value) => log(`distinct: ${value}`)),
             )
@@ -28,8 +30,10 @@ describe('distinct', () => {
     it('02', (cb) => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinct((value) => value),
                 tap((value) => log(`distinct: ${value}`)),
             )
@@ -51,8 +55,10 @@ describe('distinct', () => {
     it('03', (cb) => {
         of(0, 1, 1, 2, 0, 0, 1, 3, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 distinct(undefined, timer(1000)),
                 tap((value) => log(`distinct: ${value}`)),
             )

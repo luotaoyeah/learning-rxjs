@@ -1,5 +1,5 @@
 import { of, single, tap } from 'rxjs';
-import { log, logSubscribe } from '../../util';
+import { log } from '../../util';
 
 describe('single', () => {
     /**
@@ -9,8 +9,10 @@ describe('single', () => {
     it('01', (cb) => {
         of(1, 2, 3)
             .pipe(
-                logSubscribe(),
-                tap((value) => log(`--| ${value}`)),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(`-----| ${value}`),
+                }),
                 single((value) => value % 2 === 9),
                 tap((value) => log(`----------| ${value}`)),
             )
