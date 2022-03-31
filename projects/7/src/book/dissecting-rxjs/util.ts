@@ -10,7 +10,7 @@ function log(message: any): void {
         msg = JSON.stringify(message, null, 0);
     }
 
-    console.log(`         ${new Date().toISOString().substring(11, 19)} ${msg}`);
+    console.log(`         ${new Date().toISOString().substring(11, 19)} | ${msg}`);
 }
 
 export { log };

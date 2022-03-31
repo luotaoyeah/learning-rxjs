@@ -7,7 +7,7 @@ describe('unsubscribe', () => {
             let n = 1;
 
             const handle = setInterval(() => {
-                log(`| ${n}`);
+                log(`${n}`);
                 subscriber.next(n++);
             }, 1000);
 
@@ -46,7 +46,7 @@ describe('unsubscribe', () => {
             share({ resetOnComplete: false, resetOnError: false, resetOnRefCountZero: false }),
         );
 
-        source$.subscribe((value) => log(`| ${value}`));
+        source$.subscribe((value) => log(`${value}`));
         source$.subscribe((value) => log(`----------| ${value}`));
 
         setTimeout(() => {

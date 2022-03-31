@@ -1,18 +1,21 @@
-import { concat, count, skip, startWith, tap, timer } from 'rxjs';
+import { concat, count, tap, timer } from 'rxjs';
 import { log } from '../../util';
 
 describe('count', () => {
+    /**
+     * 上游完结时, 吐出上游数据总个数.
+     */
     it('01', (cb) => {
         const source$ = concat(timer(1000), timer(1000));
 
         source$
             .pipe(
-                startWith('SUBSCRIBE'),
-                tap((value) => value === 'SUBSCRIBE' && log(value)),
-                skip(1),
-
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    next: (value) => log(value),
+                }),
                 count(),
-                tap((value) => log('count:' + value)),
+                tap((value) => log(`----------| ${value}`)),
             )
             .subscribe({
                 complete: () => {

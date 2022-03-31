@@ -17,7 +17,7 @@ describe('shareReplay', () => {
         const observable = cold$.pipe(
             tap({
                 subscribe: () => log('SUBSCRIBE'),
-                next: (value) => log(`| ${value}`),
+                next: (value) => log(value),
             }),
             share({
                 connector: () => new ReplaySubject(1),
@@ -39,7 +39,7 @@ describe('shareReplay', () => {
         const observable = cold$.pipe(
             tap({
                 subscribe: () => log('SUBSCRIBE'),
-                next: (value) => log(`| ${value}`),
+                next: (value) => log(value),
             }),
             shareReplay(2),
         );

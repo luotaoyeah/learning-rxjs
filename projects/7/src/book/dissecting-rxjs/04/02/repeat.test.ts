@@ -1,68 +1,47 @@
-import { interval, Observable, repeat, take, tap } from 'rxjs';
+import { interval, repeat, take, tap } from 'rxjs';
 import { log } from '../../util';
 
-/**
- * repeat(): 重复订阅上游 n 次, 上游完结之后就会立即再次订阅
- */
 describe('repeat', () => {
     /**
-     * 上游完结之后, 立即再次订阅.
+     * 上游完结之后, 立即再次订阅. 重复 N 次
      */
     it('01', (cb) => {
-        const source$ = new Observable((subscriber) => {
-            console.log('SUBSCRIBE');
+        const source$ = interval(1000).pipe(take(3));
 
-            setTimeout(() => subscriber.next(1), 1000);
-            setTimeout(() => subscriber.next(2), 2000);
-            setTimeout(() => subscriber.next(3), 3000);
-            setTimeout(() => subscriber.complete(), 4000);
-
-            return {
-                unsubscribe() {
-                    console.log('UNSUBSCRIBE');
-                },
-            };
-        });
-
-        source$.pipe(repeat(2)).subscribe({
-            next: (value) => {
-                console.log(value);
-            },
-            complete: () => {
-                console.log('COMPLETE');
-                cb();
-            },
-        });
+        source$
+            .pipe(
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    unsubscribe: () => log('UNSUBSCRIBE'),
+                    complete: () => log('COMPLETE'),
+                }),
+                repeat(2),
+            )
+            .subscribe({
+                next: (value) => log(`----------| ${value}`),
+                complete: () => cb(),
+            });
     });
 
     /**
      * 可以通过参数 delay 设置延迟多少毫秒再去订阅上游.
      */
     it('02', (cb) => {
-        const source$ = new Observable((subscriber) => {
-            console.log('SUBSCRIBE');
+        const source$ = interval(1000).pipe(take(3));
 
-            setTimeout(() => subscriber.next(1), 1000);
-            setTimeout(() => subscriber.next(2), 2000);
-            setTimeout(() => subscriber.next(3), 3000);
-            setTimeout(() => subscriber.complete(), 4000);
-
-            return {
-                unsubscribe() {
-                    console.log('UNSUBSCRIBE');
-                },
-            };
-        });
-
-        source$.pipe(repeat({ count: 2, delay: 2000 })).subscribe({
-            next: (value) => {
-                log(value);
-            },
-            complete: () => {
-                log('COMPLETE');
-                cb();
-            },
-        });
+        source$
+            .pipe(
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    unsubscribe: () => log('UNSUBSCRIBE'),
+                    complete: () => log('COMPLETE'),
+                }),
+                repeat({ count: 2, delay: 2000 }),
+            )
+            .subscribe({
+                next: (value) => log(`----------| ${value}`),
+                complete: () => cb(),
+            });
     });
 
     /**
@@ -70,9 +49,15 @@ describe('repeat', () => {
      * 当 delay$ 吐出第一个数据时, repeat 就去订阅上游, 并且退订 delay$.
      */
     it('03', (cb) => {
-        interval(1000)
+        const source$ = interval(1000).pipe(take(3));
+
+        source$
             .pipe(
-                take(3),
+                tap({
+                    subscribe: () => log('SUBSCRIBE'),
+                    unsubscribe: () => log('UNSUBSCRIBE'),
+                    complete: () => log('COMPLETE'),
+                }),
                 repeat({
                     count: 3,
                     // count 表示上游已经被订阅了几次
@@ -87,9 +72,7 @@ describe('repeat', () => {
                 }),
             )
             .subscribe({
-                next: (value) => {
-                    log(value);
-                },
+                next: (value) => log(`----------| ${value}`),
                 complete: () => cb(),
             });
     });

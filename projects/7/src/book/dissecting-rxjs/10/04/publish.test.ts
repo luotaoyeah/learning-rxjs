@@ -32,7 +32,7 @@ describe('publish', () => {
         const observable01$ = cold$.pipe(
             tap({
                 subscribe: () => log('SUBSCRIBE'),
-                next: (value) => log(`| ${value}`),
+                next: (value) => log(value),
             }),
             publish(),
             refCount(),
@@ -43,7 +43,7 @@ describe('publish', () => {
         // 为了解决这个问题, 我们可以在 pipe 的最后使用 shareReplay (或者其他多播操作符), 将 observable02$ 重新变成一个热流
         const observable02$ = observable01$.pipe(
             map((value) => {
-                log(`| map | ${value}`);
+                log(`map | ${value}`);
                 return value;
             }),
             shareReplay(1),
