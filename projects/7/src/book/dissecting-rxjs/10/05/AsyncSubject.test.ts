@@ -25,7 +25,7 @@ describe('AsyncSubject', () => {
         observable.subscribe({ next: (value) => log(`---------------| ${value}`) });
 
         setTimeout(() => {
-            // 此时上游已经完结, 下游订阅之后直接拿到数据
+            // 此时上游已经完结, 下游订阅之后直接拿到上游最后一个数据
             observable.subscribe({
                 next: (value) => log(`-------------------------| ${value}`),
                 complete: () => {

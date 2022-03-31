@@ -18,7 +18,7 @@ describe('BehaviorSubject', () => {
             share({
                 connector: () => new BehaviorSubject(9),
                 resetOnError: false,
-                resetOnComplete: false,
+                resetOnComplete: true,
                 resetOnRefCountZero: false,
             }),
         );
