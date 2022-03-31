@@ -1,13 +1,11 @@
-import { interval, map, ReplaySubject, share, Subject, take, tap } from 'rxjs';
+import { BehaviorSubject, interval, share, take, tap } from 'rxjs';
 import { log } from '../../util';
 
-describe('ReplaySubject', () => {
+describe('BehaviorSubject', () => {
     /**
-     * ReplaySubject 会缓存上游数据, 可以指定只缓存 N 个数据(缓存最新的 N 个数据, 否则缓存所有数据).
-     * 当有新的下游订阅时, 会将缓存的数据一次性吐给下游.
-     *
-     * 当上游完结之后, 下游再来订阅, 此时下游不会去订阅上游, 而是直接一次性获得缓存的数据,
-     * 这样就避免了重新订阅上游, 又重新走一遍所有的管道.
+     * BehaviorSubject 会指定一个默认值,
+     * 当下游订阅时, 如果上游还未吐出数据, 则下游会立即收到这个默认值,
+     * 当下游订阅时, 如果上游已经吐过数据, 则下游会立即收到上游最后吐的数据.
      */
     it('01', (cb) => {
         const cold$ = interval(1000).pipe(take(5));
@@ -18,7 +16,7 @@ describe('ReplaySubject', () => {
                 next: (value) => log(`-----| ${value}`),
             }),
             share({
-                connector: () => new ReplaySubject(3),
+                connector: () => new BehaviorSubject(9),
                 resetOnError: false,
                 resetOnComplete: false,
                 resetOnRefCountZero: false,
@@ -32,8 +30,7 @@ describe('ReplaySubject', () => {
         }, 1000 * 3);
 
         setTimeout(() => {
-            // 上游完结了我再去订阅, 如果用的是 Subject, 则会重新订阅上游冷流,
-            // 如果用的是 ReplaySubject, 则不会订阅上游冷流, 而是直接一次性获得缓存数据.
+            // 上游完结了我再去订阅,
             observable.subscribe({ next: (value) => log(`-----------------------------------| ${value}`) });
         }, 1000 * 7);
     });
