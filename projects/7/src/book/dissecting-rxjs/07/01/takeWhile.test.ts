@@ -3,7 +3,7 @@ import { log } from '../../util';
 
 describe('takeWhile', () => {
     /**
-     * 一直连续取数据, 直到条件不成立.
+     * 一直取数据, 直到条件不成立.
      */
     it('01', (cb) => {
         interval(1000)
