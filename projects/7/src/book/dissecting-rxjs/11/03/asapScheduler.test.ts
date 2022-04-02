@@ -32,4 +32,13 @@ describe('asapScheduler', () => {
 
         log('AFTER');
     });
+
+    /**
+     * asapScheduler 会尽可能使用微任务, 因此优先级会高于宏任务.
+     */
+    it('03', (cb) => {
+        // setTimeout() 是宏任务, 虽然代码在前, 但是执行在后
+        setTimeout(() => log('setTimeout'), 0);
+        asapScheduler.schedule(() => log('asapScheduler'), 0);
+    });
 });
