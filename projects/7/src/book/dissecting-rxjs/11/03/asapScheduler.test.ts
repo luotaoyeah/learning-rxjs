@@ -1,4 +1,4 @@
-import { asapScheduler, range } from 'rxjs';
+import { asapScheduler, asyncScheduler, range } from 'rxjs';
 import { log } from '../../util';
 
 describe('asapScheduler', () => {
@@ -39,6 +39,7 @@ describe('asapScheduler', () => {
     it('03', (cb) => {
         // setTimeout() 是宏任务, 虽然代码在前, 但是执行在后
         setTimeout(() => log('setTimeout'), 0);
+        asyncScheduler.schedule(() => log('asyncScheduler'), 0);
         asapScheduler.schedule(() => log('asapScheduler'), 0);
     });
 });
